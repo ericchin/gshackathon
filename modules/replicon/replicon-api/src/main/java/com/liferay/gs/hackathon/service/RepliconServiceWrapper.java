@@ -38,6 +38,14 @@ public class RepliconServiceWrapper implements RepliconService,
 		return _repliconService.addRepliconProject(serviceContext);
 	}
 
+	@Override
+	public com.liferay.gs.hackathon.model.Replicon addRepliconProject(
+		long companyId, long userId, java.util.Date startTime,
+		java.util.Date endTime, java.lang.String projectName) {
+		return _repliconService.addRepliconProject(companyId, userId,
+			startTime, endTime, projectName);
+	}
+
 	/**
 	* Returns the OSGi service identifier.
 	*

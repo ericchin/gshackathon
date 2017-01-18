@@ -80,5 +80,22 @@ public class RepliconServiceSoap {
 		}
 	}
 
+	public static com.liferay.gs.hackathon.model.RepliconSoap addRepliconProject(
+		long companyId, long userId, java.util.Date startTime,
+		java.util.Date endTime, java.lang.String projectName)
+		throws RemoteException {
+		try {
+			com.liferay.gs.hackathon.model.Replicon returnValue = RepliconServiceUtil.addRepliconProject(companyId,
+					userId, startTime, endTime, projectName);
+
+			return com.liferay.gs.hackathon.model.RepliconSoap.toSoapModel(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
 	private static Log _log = LogFactoryUtil.getLog(RepliconServiceSoap.class);
 }
