@@ -2,12 +2,12 @@
 <!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 7.0.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_7_0_0.dtd">
 
 <service-builder package-path="com.liferay.gs.hackathon">
-	<namespace>FOO</namespace>
-	<entity local-service="true" name="Foo" remote-service="true" uuid="true">
+	<namespace>GS</namespace>
+	<entity local-service="true" name="Replicon" remote-service="true" uuid="true">
 
 		<!-- PK fields -->
 
-		<column name="fooId" primary="true" type="long" />
+		<column name="projectId" primary="true" type="long" />
 
 		<!-- Group instance -->
 
@@ -23,22 +23,7 @@
 
 		<!-- Other fields -->
 
-		<column name="field1" type="String" />
-		<column name="field2" type="boolean" />
-		<column name="field3" type="int" />
-		<column name="field4" type="Date" />
-		<column name="field5" type="String" />
-
-		<!-- Order -->
-
-		<order by="asc">
-			<order-column name="field1" />
-		</order>
-
-		<!-- Finder methods -->
-
-		<finder name="Field2" return-type="Collection">
-			<finder-column name="field2" />
-		</finder>
+		<column name="startTime" type="Date" />
+		<column name="endTime" type="Date" />
 	</entity>
 </service-builder>
