@@ -16,7 +16,14 @@ package com.liferay.gs.hackathon.service.impl;
 
 import aQute.bnd.annotation.ProviderType;
 
+import com.liferay.gs.hackathon.model.Replicon;
 import com.liferay.gs.hackathon.service.base.RepliconLocalServiceBaseImpl;
+import com.liferay.gs.hackathon.util.RepliconConstants;
+import com.liferay.portal.kernel.model.User;
+import com.liferay.portal.kernel.service.ServiceContext;
+import com.liferay.portal.kernel.util.StringPool;
+
+import java.util.Date;
 
 /**
  * The implementation of the replicon local service.
@@ -39,4 +46,40 @@ public class RepliconLocalServiceImpl extends RepliconLocalServiceBaseImpl {
 	 *
 	 * Never reference this class directly. Always use {@link com.liferay.gs.hackathon.service.RepliconLocalServiceUtil} to access the replicon local service.
 	 */
+
+	public Replicon addRepliconProject(ServiceContext serviceContext) {
+		long projectId = counterLocalService.increment(
+			Replicon.class.getName());
+
+		Replicon replicon = repliconPersistence.create(projectId);
+
+		long userId = serviceContext.getUserId();
+
+		String userName = StringPool.BLANK;
+
+		User user = userLocalService.fetchUser(userId);
+
+		if (user != null) {
+			userName = user.getScreenName();
+		}
+
+		Date startTime = (Date) serviceContext.getAttribute(
+			RepliconConstants.START_TIME);
+
+		Date endTime = (Date) serviceContext.getAttribute(
+			RepliconConstants.END_TIME);
+
+		replicon.setGroupId(serviceContext.getScopeGroupId());
+		replicon.setCompanyId(serviceContext.getCompanyId());
+		replicon.setUserId(serviceContext.getUserId());
+		replicon.setUserName(userName);
+		replicon.setCreateDate(new Date());
+		replicon.setModifiedDate(new Date());
+
+		replicon.setStartTime(startTime);
+		replicon.setEndTime(endTime);
+
+		return repliconPersistence.update(replicon);
+	}
+
 }

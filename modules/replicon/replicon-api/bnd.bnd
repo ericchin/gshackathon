@@ -4,4 +4,5 @@ Export-Package:\
 	com.liferay.gs.hackathon.exception,\
 	com.liferay.gs.hackathon.model,\
 	com.liferay.gs.hackathon.service,\
-	com.liferay.gs.hackathon.service.persistence
+	com.liferay.gs.hackathon.service.persistence,\
+	com.liferay.gs.hackathon.service.util
