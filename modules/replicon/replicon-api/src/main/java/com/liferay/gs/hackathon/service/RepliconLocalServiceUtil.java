@@ -53,6 +53,11 @@ public class RepliconLocalServiceUtil {
 		return getService().addReplicon(replicon);
 	}
 
+	public static com.liferay.gs.hackathon.model.Replicon addRepliconProject(
+		com.liferay.portal.kernel.service.ServiceContext serviceContext) {
+		return getService().addRepliconProject(serviceContext);
+	}
+
 	/**
 	* Creates a new replicon with the primary key. Does not add the replicon to the database.
 	*

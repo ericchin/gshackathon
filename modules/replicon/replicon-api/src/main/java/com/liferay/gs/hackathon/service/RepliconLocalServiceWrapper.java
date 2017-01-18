@@ -45,6 +45,12 @@ public class RepliconLocalServiceWrapper implements RepliconLocalService,
 		return _repliconLocalService.addReplicon(replicon);
 	}
 
+	@Override
+	public com.liferay.gs.hackathon.model.Replicon addRepliconProject(
+		com.liferay.portal.kernel.service.ServiceContext serviceContext) {
+		return _repliconLocalService.addRepliconProject(serviceContext);
+	}
+
 	/**
 	* Creates a new replicon with the primary key. Does not add the replicon to the database.
 	*
