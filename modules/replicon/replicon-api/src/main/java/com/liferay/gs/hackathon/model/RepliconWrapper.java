@@ -67,6 +67,7 @@ public class RepliconWrapper implements Replicon, ModelWrapper<Replicon> {
 		attributes.put("userName", getUserName());
 		attributes.put("createDate", getCreateDate());
 		attributes.put("modifiedDate", getModifiedDate());
+		attributes.put("projectName", getProjectName());
 		attributes.put("startTime", getStartTime());
 		attributes.put("endTime", getEndTime());
 
@@ -121,6 +122,12 @@ public class RepliconWrapper implements Replicon, ModelWrapper<Replicon> {
 
 		if (modifiedDate != null) {
 			setModifiedDate(modifiedDate);
+		}
+
+		String projectName = (String)attributes.get("projectName");
+
+		if (projectName != null) {
+			setProjectName(projectName);
 		}
 
 		Date startTime = (Date)attributes.get("startTime");
@@ -189,6 +196,16 @@ public class RepliconWrapper implements Replicon, ModelWrapper<Replicon> {
 	@Override
 	public java.lang.Object clone() {
 		return new RepliconWrapper((Replicon)_replicon.clone());
+	}
+
+	/**
+	* Returns the project name of this replicon.
+	*
+	* @return the project name of this replicon
+	*/
+	@Override
+	public java.lang.String getProjectName() {
+		return _replicon.getProjectName();
 	}
 
 	/**
@@ -425,6 +442,16 @@ public class RepliconWrapper implements Replicon, ModelWrapper<Replicon> {
 	@Override
 	public void setProjectId(long projectId) {
 		_replicon.setProjectId(projectId);
+	}
+
+	/**
+	* Sets the project name of this replicon.
+	*
+	* @param projectName the project name of this replicon
+	*/
+	@Override
+	public void setProjectName(java.lang.String projectName) {
+		_replicon.setProjectName(projectName);
 	}
 
 	/**

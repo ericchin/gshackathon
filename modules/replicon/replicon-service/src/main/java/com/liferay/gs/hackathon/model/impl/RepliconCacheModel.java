@@ -65,7 +65,7 @@ public class RepliconCacheModel implements CacheModel<Replicon>, Externalizable 
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(21);
+		StringBundler sb = new StringBundler(23);
 
 		sb.append("{uuid=");
 		sb.append(uuid);
@@ -83,6 +83,8 @@ public class RepliconCacheModel implements CacheModel<Replicon>, Externalizable 
 		sb.append(createDate);
 		sb.append(", modifiedDate=");
 		sb.append(modifiedDate);
+		sb.append(", projectName=");
+		sb.append(projectName);
 		sb.append(", startTime=");
 		sb.append(startTime);
 		sb.append(", endTime=");
@@ -129,6 +131,13 @@ public class RepliconCacheModel implements CacheModel<Replicon>, Externalizable 
 			repliconImpl.setModifiedDate(new Date(modifiedDate));
 		}
 
+		if (projectName == null) {
+			repliconImpl.setProjectName(StringPool.BLANK);
+		}
+		else {
+			repliconImpl.setProjectName(projectName);
+		}
+
 		if (startTime == Long.MIN_VALUE) {
 			repliconImpl.setStartTime(null);
 		}
@@ -162,6 +171,7 @@ public class RepliconCacheModel implements CacheModel<Replicon>, Externalizable 
 		userName = objectInput.readUTF();
 		createDate = objectInput.readLong();
 		modifiedDate = objectInput.readLong();
+		projectName = objectInput.readUTF();
 		startTime = objectInput.readLong();
 		endTime = objectInput.readLong();
 	}
@@ -193,6 +203,14 @@ public class RepliconCacheModel implements CacheModel<Replicon>, Externalizable 
 
 		objectOutput.writeLong(createDate);
 		objectOutput.writeLong(modifiedDate);
+
+		if (projectName == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(projectName);
+		}
+
 		objectOutput.writeLong(startTime);
 		objectOutput.writeLong(endTime);
 	}
@@ -205,6 +223,7 @@ public class RepliconCacheModel implements CacheModel<Replicon>, Externalizable 
 	public String userName;
 	public long createDate;
 	public long modifiedDate;
+	public String projectName;
 	public long startTime;
 	public long endTime;
 }

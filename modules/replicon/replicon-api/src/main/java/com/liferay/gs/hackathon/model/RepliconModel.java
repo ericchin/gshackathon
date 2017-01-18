@@ -211,6 +211,21 @@ public interface RepliconModel extends BaseModel<Replicon>, GroupedModel,
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
+	 * Returns the project name of this replicon.
+	 *
+	 * @return the project name of this replicon
+	 */
+	@AutoEscape
+	public String getProjectName();
+
+	/**
+	 * Sets the project name of this replicon.
+	 *
+	 * @param projectName the project name of this replicon
+	 */
+	public void setProjectName(String projectName);
+
+	/**
 	 * Returns the start time of this replicon.
 	 *
 	 * @return the start time of this replicon

@@ -1827,6 +1827,7 @@ public class RepliconPersistenceImpl extends BasePersistenceImpl<Replicon>
 		repliconImpl.setUserName(replicon.getUserName());
 		repliconImpl.setCreateDate(replicon.getCreateDate());
 		repliconImpl.setModifiedDate(replicon.getModifiedDate());
+		repliconImpl.setProjectName(replicon.getProjectName());
 		repliconImpl.setStartTime(replicon.getStartTime());
 		repliconImpl.setEndTime(replicon.getEndTime());
 

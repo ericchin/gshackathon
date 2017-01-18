@@ -42,6 +42,7 @@ public class RepliconSoap implements Serializable {
 		soapModel.setUserName(model.getUserName());
 		soapModel.setCreateDate(model.getCreateDate());
 		soapModel.setModifiedDate(model.getModifiedDate());
+		soapModel.setProjectName(model.getProjectName());
 		soapModel.setStartTime(model.getStartTime());
 		soapModel.setEndTime(model.getEndTime());
 
@@ -160,6 +161,14 @@ public class RepliconSoap implements Serializable {
 		_modifiedDate = modifiedDate;
 	}
 
+	public String getProjectName() {
+		return _projectName;
+	}
+
+	public void setProjectName(String projectName) {
+		_projectName = projectName;
+	}
+
 	public Date getStartTime() {
 		return _startTime;
 	}
@@ -184,6 +193,7 @@ public class RepliconSoap implements Serializable {
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
+	private String _projectName;
 	private Date _startTime;
 	private Date _endTime;
 }

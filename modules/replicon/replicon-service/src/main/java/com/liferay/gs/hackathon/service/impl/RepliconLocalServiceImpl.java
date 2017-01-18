@@ -63,6 +63,9 @@ public class RepliconLocalServiceImpl extends RepliconLocalServiceBaseImpl {
 			userName = user.getScreenName();
 		}
 
+		String projectName = (String) serviceContext.getAttribute(
+			RepliconConstants.PROJECT_NAME);
+
 		Date startTime = (Date) serviceContext.getAttribute(
 			RepliconConstants.START_TIME);
 
@@ -76,6 +79,7 @@ public class RepliconLocalServiceImpl extends RepliconLocalServiceBaseImpl {
 		replicon.setCreateDate(new Date());
 		replicon.setModifiedDate(new Date());
 
+		replicon.setProjectName(projectName);
 		replicon.setStartTime(startTime);
 		replicon.setEndTime(endTime);
 

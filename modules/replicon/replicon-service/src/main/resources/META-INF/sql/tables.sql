@@ -7,6 +7,7 @@ create table GS_Replicon (
 	userName VARCHAR(75) null,
 	createDate DATE null,
 	modifiedDate DATE null,
+	projectName VARCHAR(75) null,
 	startTime DATE null,
 	endTime DATE null
 );

@@ -81,6 +81,7 @@ public class RepliconModelImpl extends BaseModelImpl<Replicon>
 			{ "userName", Types.VARCHAR },
 			{ "createDate", Types.TIMESTAMP },
 			{ "modifiedDate", Types.TIMESTAMP },
+			{ "projectName", Types.VARCHAR },
 			{ "startTime", Types.TIMESTAMP },
 			{ "endTime", Types.TIMESTAMP }
 		};
@@ -95,11 +96,12 @@ public class RepliconModelImpl extends BaseModelImpl<Replicon>
 		TABLE_COLUMNS_MAP.put("userName", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("createDate", Types.TIMESTAMP);
 		TABLE_COLUMNS_MAP.put("modifiedDate", Types.TIMESTAMP);
+		TABLE_COLUMNS_MAP.put("projectName", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("startTime", Types.TIMESTAMP);
 		TABLE_COLUMNS_MAP.put("endTime", Types.TIMESTAMP);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table GS_Replicon (uuid_ VARCHAR(75) null,projectId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,startTime DATE null,endTime DATE null)";
+	public static final String TABLE_SQL_CREATE = "create table GS_Replicon (uuid_ VARCHAR(75) null,projectId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,projectName VARCHAR(75) null,startTime DATE null,endTime DATE null)";
 	public static final String TABLE_SQL_DROP = "drop table GS_Replicon";
 	public static final String ORDER_BY_JPQL = " ORDER BY replicon.projectId ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY GS_Replicon.projectId ASC";
@@ -141,6 +143,7 @@ public class RepliconModelImpl extends BaseModelImpl<Replicon>
 		model.setUserName(soapModel.getUserName());
 		model.setCreateDate(soapModel.getCreateDate());
 		model.setModifiedDate(soapModel.getModifiedDate());
+		model.setProjectName(soapModel.getProjectName());
 		model.setStartTime(soapModel.getStartTime());
 		model.setEndTime(soapModel.getEndTime());
 
@@ -215,6 +218,7 @@ public class RepliconModelImpl extends BaseModelImpl<Replicon>
 		attributes.put("userName", getUserName());
 		attributes.put("createDate", getCreateDate());
 		attributes.put("modifiedDate", getModifiedDate());
+		attributes.put("projectName", getProjectName());
 		attributes.put("startTime", getStartTime());
 		attributes.put("endTime", getEndTime());
 
@@ -272,6 +276,12 @@ public class RepliconModelImpl extends BaseModelImpl<Replicon>
 
 		if (modifiedDate != null) {
 			setModifiedDate(modifiedDate);
+		}
+
+		String projectName = (String)attributes.get("projectName");
+
+		if (projectName != null) {
+			setProjectName(projectName);
 		}
 
 		Date startTime = (Date)attributes.get("startTime");
@@ -441,6 +451,22 @@ public class RepliconModelImpl extends BaseModelImpl<Replicon>
 
 	@JSON
 	@Override
+	public String getProjectName() {
+		if (_projectName == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _projectName;
+		}
+	}
+
+	@Override
+	public void setProjectName(String projectName) {
+		_projectName = projectName;
+	}
+
+	@JSON
+	@Override
 	public Date getStartTime() {
 		return _startTime;
 	}
@@ -506,6 +532,7 @@ public class RepliconModelImpl extends BaseModelImpl<Replicon>
 		repliconImpl.setUserName(getUserName());
 		repliconImpl.setCreateDate(getCreateDate());
 		repliconImpl.setModifiedDate(getModifiedDate());
+		repliconImpl.setProjectName(getProjectName());
 		repliconImpl.setStartTime(getStartTime());
 		repliconImpl.setEndTime(getEndTime());
 
@@ -631,6 +658,14 @@ public class RepliconModelImpl extends BaseModelImpl<Replicon>
 			repliconCacheModel.modifiedDate = Long.MIN_VALUE;
 		}
 
+		repliconCacheModel.projectName = getProjectName();
+
+		String projectName = repliconCacheModel.projectName;
+
+		if ((projectName != null) && (projectName.length() == 0)) {
+			repliconCacheModel.projectName = null;
+		}
+
 		Date startTime = getStartTime();
 
 		if (startTime != null) {
@@ -654,7 +689,7 @@ public class RepliconModelImpl extends BaseModelImpl<Replicon>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(21);
+		StringBundler sb = new StringBundler(23);
 
 		sb.append("{uuid=");
 		sb.append(getUuid());
@@ -672,6 +707,8 @@ public class RepliconModelImpl extends BaseModelImpl<Replicon>
 		sb.append(getCreateDate());
 		sb.append(", modifiedDate=");
 		sb.append(getModifiedDate());
+		sb.append(", projectName=");
+		sb.append(getProjectName());
 		sb.append(", startTime=");
 		sb.append(getStartTime());
 		sb.append(", endTime=");
@@ -683,7 +720,7 @@ public class RepliconModelImpl extends BaseModelImpl<Replicon>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(34);
+		StringBundler sb = new StringBundler(37);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.gs.hackathon.model.Replicon");
@@ -722,6 +759,10 @@ public class RepliconModelImpl extends BaseModelImpl<Replicon>
 		sb.append(getModifiedDate());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>projectName</column-name><column-value><![CDATA[");
+		sb.append(getProjectName());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>startTime</column-name><column-value><![CDATA[");
 		sb.append(getStartTime());
 		sb.append("]]></column-value></column>");
@@ -753,6 +794,7 @@ public class RepliconModelImpl extends BaseModelImpl<Replicon>
 	private Date _createDate;
 	private Date _modifiedDate;
 	private boolean _setModifiedDate;
+	private String _projectName;
 	private Date _startTime;
 	private Date _endTime;
 	private long _columnBitmask;
