@@ -16,11 +16,14 @@ package com.liferay.gs.hackathon.service;
 
 import aQute.bnd.annotation.ProviderType;
 
+import com.liferay.gs.hackathon.model.Replicon;
+
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.jsonwebservice.JSONWebService;
 import com.liferay.portal.kernel.security.access.control.AccessControlled;
 import com.liferay.portal.kernel.service.BaseService;
+import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.spring.osgi.OSGiBeanProperties;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Transactional;
@@ -49,6 +52,7 @@ public interface RepliconService extends BaseService {
 	 *
 	 * Never modify or reference this interface directly. Always use {@link RepliconServiceUtil} to access the replicon remote service. Add custom service methods to {@link com.liferay.gs.hackathon.service.impl.RepliconServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
+	public Replicon addRepliconProject(ServiceContext serviceContext);
 
 	/**
 	* Returns the OSGi service identifier.

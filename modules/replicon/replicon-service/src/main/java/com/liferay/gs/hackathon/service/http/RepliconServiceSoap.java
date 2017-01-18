@@ -16,9 +16,16 @@ package com.liferay.gs.hackathon.service.http;
 
 import aQute.bnd.annotation.ProviderType;
 
+import com.liferay.gs.hackathon.service.RepliconServiceUtil;
+
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+
+import java.rmi.RemoteException;
+
 /**
  * Provides the SOAP utility for the
- * {@link com.liferay.gs.hackathon.service.RepliconServiceUtil} service utility. The
+ * {@link RepliconServiceUtil} service utility. The
  * static methods of this class calls the same methods of the service utility.
  * However, the signatures are different because it is difficult for SOAP to
  * support certain types.
@@ -53,9 +60,25 @@ import aQute.bnd.annotation.ProviderType;
  * @author Brian Wing Shun Chan
  * @see RepliconServiceHttp
  * @see com.liferay.gs.hackathon.model.RepliconSoap
- * @see com.liferay.gs.hackathon.service.RepliconServiceUtil
+ * @see RepliconServiceUtil
  * @generated
  */
 @ProviderType
 public class RepliconServiceSoap {
+	public static com.liferay.gs.hackathon.model.RepliconSoap addRepliconProject(
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws RemoteException {
+		try {
+			com.liferay.gs.hackathon.model.Replicon returnValue = RepliconServiceUtil.addRepliconProject(serviceContext);
+
+			return com.liferay.gs.hackathon.model.RepliconSoap.toSoapModel(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	private static Log _log = LogFactoryUtil.getLog(RepliconServiceSoap.class);
 }
