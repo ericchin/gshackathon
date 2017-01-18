@@ -50,7 +50,7 @@ public class RepliconServiceImpl extends RepliconServiceBaseImpl {
 	}
 
 	public Replicon addRepliconProject(
-		long companyId, long userId, Date startTime, Date endTime,
+		long companyId, long userId, String startTime, String endTime,
 		String projectName) {
 
 		ServiceContext serviceContext = new ServiceContext();
@@ -61,8 +61,8 @@ public class RepliconServiceImpl extends RepliconServiceBaseImpl {
 		serviceContext.setAttribute(
 			RepliconConstants.PROJECT_NAME, projectName);
 
-		serviceContext.setAttribute(RepliconConstants.START_TIME, startTime);
-		serviceContext.setAttribute(RepliconConstants.END_TIME, endTime);
+		serviceContext.setAttribute(RepliconConstants.START_TIME, new Date());
+		serviceContext.setAttribute(RepliconConstants.END_TIME, new Date());
 
 		return repliconLocalService.addRepliconProject(serviceContext);
 	}
