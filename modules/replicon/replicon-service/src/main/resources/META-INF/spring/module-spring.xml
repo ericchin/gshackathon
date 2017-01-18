@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" default-destroy-method="destroy" default-init-method="afterPropertiesSet" xsi:schemaLocation=" http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<bean class="com.liferay.gs.hackathon.service.impl.RepliconLocalServiceImpl" id="com.liferay.gs.hackathon.service.RepliconLocalService" />
+	<bean class="com.liferay.gs.hackathon.service.impl.RepliconServiceImpl" id="com.liferay.gs.hackathon.service.RepliconService" />
+	<bean class="com.liferay.gs.hackathon.service.persistence.impl.RepliconPersistenceImpl" id="com.liferay.gs.hackathon.service.persistence.RepliconPersistence" parent="basePersistence" />
+</beans>
