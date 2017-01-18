@@ -18,7 +18,10 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.gs.hackathon.model.Replicon;
 import com.liferay.gs.hackathon.service.base.RepliconServiceBaseImpl;
+import com.liferay.gs.hackathon.util.RepliconConstants;
 import com.liferay.portal.kernel.service.ServiceContext;
+
+import java.util.Date;
 
 /**
  * The implementation of the replicon remote service.
@@ -43,6 +46,24 @@ public class RepliconServiceImpl extends RepliconServiceBaseImpl {
 	 */
 
 	public Replicon addRepliconProject(ServiceContext serviceContext) {
+		return repliconLocalService.addRepliconProject(serviceContext);
+	}
+
+	public Replicon addRepliconProject(
+		long companyId, long userId, Date startTime, Date endTime,
+		String projectName) {
+
+		ServiceContext serviceContext = new ServiceContext();
+
+		serviceContext.setCompanyId(companyId);
+		serviceContext.setUserId(userId);
+
+		serviceContext.setAttribute(
+			RepliconConstants.PROJECT_NAME, projectName);
+
+		serviceContext.setAttribute(RepliconConstants.START_TIME, startTime);
+		serviceContext.setAttribute(RepliconConstants.END_TIME, endTime);
+
 		return repliconLocalService.addRepliconProject(serviceContext);
 	}
 
