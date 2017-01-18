@@ -81,8 +81,8 @@ public class RepliconServiceSoap {
 	}
 
 	public static com.liferay.gs.hackathon.model.RepliconSoap addRepliconProject(
-		long companyId, long userId, java.util.Date startTime,
-		java.util.Date endTime, java.lang.String projectName)
+		long companyId, long userId, java.lang.String startTime,
+		java.lang.String endTime, java.lang.String projectName)
 		throws RemoteException {
 		try {
 			com.liferay.gs.hackathon.model.Replicon returnValue = RepliconServiceUtil.addRepliconProject(companyId,

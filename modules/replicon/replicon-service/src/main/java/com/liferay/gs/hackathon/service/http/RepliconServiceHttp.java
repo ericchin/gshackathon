@@ -85,7 +85,7 @@ public class RepliconServiceHttp {
 
 	public static com.liferay.gs.hackathon.model.Replicon addRepliconProject(
 		HttpPrincipal httpPrincipal, long companyId, long userId,
-		java.util.Date startTime, java.util.Date endTime,
+		java.lang.String startTime, java.lang.String endTime,
 		java.lang.String projectName) {
 		try {
 			MethodKey methodKey = new MethodKey(RepliconServiceUtil.class,
@@ -117,7 +117,7 @@ public class RepliconServiceHttp {
 			com.liferay.portal.kernel.service.ServiceContext.class
 		};
 	private static final Class<?>[] _addRepliconProjectParameterTypes1 = new Class[] {
-			long.class, long.class, java.util.Date.class, java.util.Date.class,
-			java.lang.String.class
+			long.class, long.class, java.lang.String.class,
+			java.lang.String.class, java.lang.String.class
 		};
 }
