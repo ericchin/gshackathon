@@ -16,7 +16,9 @@ package com.liferay.gs.hackathon.service.impl;
 
 import aQute.bnd.annotation.ProviderType;
 
+import com.liferay.gs.hackathon.model.Replicon;
 import com.liferay.gs.hackathon.service.base.RepliconServiceBaseImpl;
+import com.liferay.portal.kernel.service.ServiceContext;
 
 /**
  * The implementation of the replicon remote service.
@@ -39,4 +41,9 @@ public class RepliconServiceImpl extends RepliconServiceBaseImpl {
 	 *
 	 * Never reference this class directly. Always use {@link com.liferay.gs.hackathon.service.RepliconServiceUtil} to access the replicon remote service.
 	 */
+
+	public Replicon addRepliconProject(ServiceContext serviceContext) {
+		return repliconLocalService.addRepliconProject(serviceContext);
+	}
+
 }
