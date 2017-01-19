@@ -26,5 +26,10 @@
 		<column name="projectName" type="String" />
 		<column name="startTime" type="Date" />
 		<column name="endTime" type="Date" />
+
+        <finder name="ProjectName" return-type="Collection">
+            <finder-column name="projectName"/>
+        </finder>
+
 	</entity>
 </service-builder>

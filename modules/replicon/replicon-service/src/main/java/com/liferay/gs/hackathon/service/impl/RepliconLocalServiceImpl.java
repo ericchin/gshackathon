@@ -178,5 +178,4 @@ public class RepliconLocalServiceImpl extends RepliconLocalServiceBaseImpl {
 
 	private static Log _log = LogFactoryUtil.getLog(
 		RepliconLocalServiceImpl.class);
-
 }
