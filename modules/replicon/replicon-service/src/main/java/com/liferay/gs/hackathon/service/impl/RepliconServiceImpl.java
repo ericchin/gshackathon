@@ -21,6 +21,8 @@ import com.liferay.gs.hackathon.service.base.RepliconServiceBaseImpl;
 import com.liferay.gs.hackathon.util.RepliconConstants;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.service.ServiceContext;
 
 import java.util.Date;
@@ -92,9 +94,15 @@ public class RepliconServiceImpl extends RepliconServiceBaseImpl {
         JSONObject projectSlot = slots.getJSONObject("projectslot");
         String projectName = projectSlot.getString("value");
 
+		if (_log.isDebugEnabled()) {
+			_log.debug("Project Name: " + projectName);
+			_log.debug("Start Time: " + startTime);
+			_log.debug("End Time: " + endTime);
+		}
+
         return addRepliconProject(projectName, startTime, endTime);
 	}
 
-
+	private static Log _log = LogFactoryUtil.getLog(RepliconServiceImpl.class);
 
 }
