@@ -1471,6 +1471,557 @@ public class RepliconPersistenceImpl extends BasePersistenceImpl<Replicon>
 	private static final String _FINDER_COLUMN_UUID_C_UUID_2 = "replicon.uuid = ? AND ";
 	private static final String _FINDER_COLUMN_UUID_C_UUID_3 = "(replicon.uuid IS NULL OR replicon.uuid = '') AND ";
 	private static final String _FINDER_COLUMN_UUID_C_COMPANYID_2 = "replicon.companyId = ?";
+	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_PROJECTNAME =
+		new FinderPath(RepliconModelImpl.ENTITY_CACHE_ENABLED,
+			RepliconModelImpl.FINDER_CACHE_ENABLED, RepliconImpl.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByProjectName",
+			new String[] {
+				String.class.getName(),
+				
+			Integer.class.getName(), Integer.class.getName(),
+				OrderByComparator.class.getName()
+			});
+	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_PROJECTNAME =
+		new FinderPath(RepliconModelImpl.ENTITY_CACHE_ENABLED,
+			RepliconModelImpl.FINDER_CACHE_ENABLED, RepliconImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByProjectName",
+			new String[] { String.class.getName() },
+			RepliconModelImpl.PROJECTNAME_COLUMN_BITMASK);
+	public static final FinderPath FINDER_PATH_COUNT_BY_PROJECTNAME = new FinderPath(RepliconModelImpl.ENTITY_CACHE_ENABLED,
+			RepliconModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByProjectName",
+			new String[] { String.class.getName() });
+
+	/**
+	 * Returns all the replicons where projectName = &#63;.
+	 *
+	 * @param projectName the project name
+	 * @return the matching replicons
+	 */
+	@Override
+	public List<Replicon> findByProjectName(String projectName) {
+		return findByProjectName(projectName, QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS, null);
+	}
+
+	/**
+	 * Returns a range of all the replicons where projectName = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link RepliconModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param projectName the project name
+	 * @param start the lower bound of the range of replicons
+	 * @param end the upper bound of the range of replicons (not inclusive)
+	 * @return the range of matching replicons
+	 */
+	@Override
+	public List<Replicon> findByProjectName(String projectName, int start,
+		int end) {
+		return findByProjectName(projectName, start, end, null);
+	}
+
+	/**
+	 * Returns an ordered range of all the replicons where projectName = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link RepliconModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param projectName the project name
+	 * @param start the lower bound of the range of replicons
+	 * @param end the upper bound of the range of replicons (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching replicons
+	 */
+	@Override
+	public List<Replicon> findByProjectName(String projectName, int start,
+		int end, OrderByComparator<Replicon> orderByComparator) {
+		return findByProjectName(projectName, start, end, orderByComparator,
+			true);
+	}
+
+	/**
+	 * Returns an ordered range of all the replicons where projectName = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link RepliconModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param projectName the project name
+	 * @param start the lower bound of the range of replicons
+	 * @param end the upper bound of the range of replicons (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @return the ordered range of matching replicons
+	 */
+	@Override
+	public List<Replicon> findByProjectName(String projectName, int start,
+		int end, OrderByComparator<Replicon> orderByComparator,
+		boolean retrieveFromCache) {
+		boolean pagination = true;
+		FinderPath finderPath = null;
+		Object[] finderArgs = null;
+
+		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
+				(orderByComparator == null)) {
+			pagination = false;
+			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_PROJECTNAME;
+			finderArgs = new Object[] { projectName };
+		}
+		else {
+			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_PROJECTNAME;
+			finderArgs = new Object[] { projectName, start, end, orderByComparator };
+		}
+
+		List<Replicon> list = null;
+
+		if (retrieveFromCache) {
+			list = (List<Replicon>)finderCache.getResult(finderPath,
+					finderArgs, this);
+
+			if ((list != null) && !list.isEmpty()) {
+				for (Replicon replicon : list) {
+					if (!Objects.equals(projectName, replicon.getProjectName())) {
+						list = null;
+
+						break;
+					}
+				}
+			}
+		}
+
+		if (list == null) {
+			StringBundler query = null;
+
+			if (orderByComparator != null) {
+				query = new StringBundler(3 +
+						(orderByComparator.getOrderByFields().length * 2));
+			}
+			else {
+				query = new StringBundler(3);
+			}
+
+			query.append(_SQL_SELECT_REPLICON_WHERE);
+
+			boolean bindProjectName = false;
+
+			if (projectName == null) {
+				query.append(_FINDER_COLUMN_PROJECTNAME_PROJECTNAME_1);
+			}
+			else if (projectName.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_PROJECTNAME_PROJECTNAME_3);
+			}
+			else {
+				bindProjectName = true;
+
+				query.append(_FINDER_COLUMN_PROJECTNAME_PROJECTNAME_2);
+			}
+
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+			else
+			 if (pagination) {
+				query.append(RepliconModelImpl.ORDER_BY_JPQL);
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				if (bindProjectName) {
+					qPos.add(projectName);
+				}
+
+				if (!pagination) {
+					list = (List<Replicon>)QueryUtil.list(q, getDialect(),
+							start, end, false);
+
+					Collections.sort(list);
+
+					list = Collections.unmodifiableList(list);
+				}
+				else {
+					list = (List<Replicon>)QueryUtil.list(q, getDialect(),
+							start, end);
+				}
+
+				cacheResult(list);
+
+				finderCache.putResult(finderPath, finderArgs, list);
+			}
+			catch (Exception e) {
+				finderCache.removeResult(finderPath, finderArgs);
+
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+
+		return list;
+	}
+
+	/**
+	 * Returns the first replicon in the ordered set where projectName = &#63;.
+	 *
+	 * @param projectName the project name
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching replicon
+	 * @throws NoSuchRepliconException if a matching replicon could not be found
+	 */
+	@Override
+	public Replicon findByProjectName_First(String projectName,
+		OrderByComparator<Replicon> orderByComparator)
+		throws NoSuchRepliconException {
+		Replicon replicon = fetchByProjectName_First(projectName,
+				orderByComparator);
+
+		if (replicon != null) {
+			return replicon;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("projectName=");
+		msg.append(projectName);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchRepliconException(msg.toString());
+	}
+
+	/**
+	 * Returns the first replicon in the ordered set where projectName = &#63;.
+	 *
+	 * @param projectName the project name
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching replicon, or <code>null</code> if a matching replicon could not be found
+	 */
+	@Override
+	public Replicon fetchByProjectName_First(String projectName,
+		OrderByComparator<Replicon> orderByComparator) {
+		List<Replicon> list = findByProjectName(projectName, 0, 1,
+				orderByComparator);
+
+		if (!list.isEmpty()) {
+			return list.get(0);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Returns the last replicon in the ordered set where projectName = &#63;.
+	 *
+	 * @param projectName the project name
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching replicon
+	 * @throws NoSuchRepliconException if a matching replicon could not be found
+	 */
+	@Override
+	public Replicon findByProjectName_Last(String projectName,
+		OrderByComparator<Replicon> orderByComparator)
+		throws NoSuchRepliconException {
+		Replicon replicon = fetchByProjectName_Last(projectName,
+				orderByComparator);
+
+		if (replicon != null) {
+			return replicon;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("projectName=");
+		msg.append(projectName);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchRepliconException(msg.toString());
+	}
+
+	/**
+	 * Returns the last replicon in the ordered set where projectName = &#63;.
+	 *
+	 * @param projectName the project name
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching replicon, or <code>null</code> if a matching replicon could not be found
+	 */
+	@Override
+	public Replicon fetchByProjectName_Last(String projectName,
+		OrderByComparator<Replicon> orderByComparator) {
+		int count = countByProjectName(projectName);
+
+		if (count == 0) {
+			return null;
+		}
+
+		List<Replicon> list = findByProjectName(projectName, count - 1, count,
+				orderByComparator);
+
+		if (!list.isEmpty()) {
+			return list.get(0);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Returns the replicons before and after the current replicon in the ordered set where projectName = &#63;.
+	 *
+	 * @param projectId the primary key of the current replicon
+	 * @param projectName the project name
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next replicon
+	 * @throws NoSuchRepliconException if a replicon with the primary key could not be found
+	 */
+	@Override
+	public Replicon[] findByProjectName_PrevAndNext(long projectId,
+		String projectName, OrderByComparator<Replicon> orderByComparator)
+		throws NoSuchRepliconException {
+		Replicon replicon = findByPrimaryKey(projectId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			Replicon[] array = new RepliconImpl[3];
+
+			array[0] = getByProjectName_PrevAndNext(session, replicon,
+					projectName, orderByComparator, true);
+
+			array[1] = replicon;
+
+			array[2] = getByProjectName_PrevAndNext(session, replicon,
+					projectName, orderByComparator, false);
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	protected Replicon getByProjectName_PrevAndNext(Session session,
+		Replicon replicon, String projectName,
+		OrderByComparator<Replicon> orderByComparator, boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(4 +
+					(orderByComparator.getOrderByConditionFields().length * 3) +
+					(orderByComparator.getOrderByFields().length * 3));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		query.append(_SQL_SELECT_REPLICON_WHERE);
+
+		boolean bindProjectName = false;
+
+		if (projectName == null) {
+			query.append(_FINDER_COLUMN_PROJECTNAME_PROJECTNAME_1);
+		}
+		else if (projectName.equals(StringPool.BLANK)) {
+			query.append(_FINDER_COLUMN_PROJECTNAME_PROJECTNAME_3);
+		}
+		else {
+			bindProjectName = true;
+
+			query.append(_FINDER_COLUMN_PROJECTNAME_PROJECTNAME_2);
+		}
+
+		if (orderByComparator != null) {
+			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+
+			if (orderByConditionFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByConditionFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByConditionFields[i]);
+
+				if ((i + 1) < orderByConditionFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+		}
+		else {
+			query.append(RepliconModelImpl.ORDER_BY_JPQL);
+		}
+
+		String sql = query.toString();
+
+		Query q = session.createQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		if (bindProjectName) {
+			qPos.add(projectName);
+		}
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByConditionValues(replicon);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<Replicon> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
+		}
+	}
+
+	/**
+	 * Removes all the replicons where projectName = &#63; from the database.
+	 *
+	 * @param projectName the project name
+	 */
+	@Override
+	public void removeByProjectName(String projectName) {
+		for (Replicon replicon : findByProjectName(projectName,
+				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+			remove(replicon);
+		}
+	}
+
+	/**
+	 * Returns the number of replicons where projectName = &#63;.
+	 *
+	 * @param projectName the project name
+	 * @return the number of matching replicons
+	 */
+	@Override
+	public int countByProjectName(String projectName) {
+		FinderPath finderPath = FINDER_PATH_COUNT_BY_PROJECTNAME;
+
+		Object[] finderArgs = new Object[] { projectName };
+
+		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
+
+		if (count == null) {
+			StringBundler query = new StringBundler(2);
+
+			query.append(_SQL_COUNT_REPLICON_WHERE);
+
+			boolean bindProjectName = false;
+
+			if (projectName == null) {
+				query.append(_FINDER_COLUMN_PROJECTNAME_PROJECTNAME_1);
+			}
+			else if (projectName.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_PROJECTNAME_PROJECTNAME_3);
+			}
+			else {
+				bindProjectName = true;
+
+				query.append(_FINDER_COLUMN_PROJECTNAME_PROJECTNAME_2);
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				if (bindProjectName) {
+					qPos.add(projectName);
+				}
+
+				count = (Long)q.uniqueResult();
+
+				finderCache.putResult(finderPath, finderArgs, count);
+			}
+			catch (Exception e) {
+				finderCache.removeResult(finderPath, finderArgs);
+
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	private static final String _FINDER_COLUMN_PROJECTNAME_PROJECTNAME_1 = "replicon.projectName IS NULL";
+	private static final String _FINDER_COLUMN_PROJECTNAME_PROJECTNAME_2 = "replicon.projectName = ?";
+	private static final String _FINDER_COLUMN_PROJECTNAME_PROJECTNAME_3 = "(replicon.projectName IS NULL OR replicon.projectName = '')";
 
 	public RepliconPersistenceImpl() {
 		setModelClass(Replicon.class);
@@ -1794,6 +2345,23 @@ public class RepliconPersistenceImpl extends BasePersistenceImpl<Replicon>
 
 				finderCache.removeResult(FINDER_PATH_COUNT_BY_UUID_C, args);
 				finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID_C,
+					args);
+			}
+
+			if ((repliconModelImpl.getColumnBitmask() &
+					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_PROJECTNAME.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] {
+						repliconModelImpl.getOriginalProjectName()
+					};
+
+				finderCache.removeResult(FINDER_PATH_COUNT_BY_PROJECTNAME, args);
+				finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_PROJECTNAME,
+					args);
+
+				args = new Object[] { repliconModelImpl.getProjectName() };
+
+				finderCache.removeResult(FINDER_PATH_COUNT_BY_PROJECTNAME, args);
+				finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_PROJECTNAME,
 					args);
 			}
 		}

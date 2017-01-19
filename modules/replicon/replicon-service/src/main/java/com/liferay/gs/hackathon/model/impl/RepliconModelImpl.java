@@ -119,8 +119,9 @@ public class RepliconModelImpl extends BaseModelImpl<Replicon>
 			true);
 	public static final long COMPANYID_COLUMN_BITMASK = 1L;
 	public static final long GROUPID_COLUMN_BITMASK = 2L;
-	public static final long UUID_COLUMN_BITMASK = 4L;
-	public static final long PROJECTID_COLUMN_BITMASK = 8L;
+	public static final long PROJECTNAME_COLUMN_BITMASK = 4L;
+	public static final long UUID_COLUMN_BITMASK = 8L;
+	public static final long PROJECTID_COLUMN_BITMASK = 16L;
 
 	/**
 	 * Converts the soap model instance into a normal model instance.
@@ -462,7 +463,17 @@ public class RepliconModelImpl extends BaseModelImpl<Replicon>
 
 	@Override
 	public void setProjectName(String projectName) {
+		_columnBitmask |= PROJECTNAME_COLUMN_BITMASK;
+
+		if (_originalProjectName == null) {
+			_originalProjectName = _projectName;
+		}
+
 		_projectName = projectName;
+	}
+
+	public String getOriginalProjectName() {
+		return GetterUtil.getString(_originalProjectName);
 	}
 
 	@JSON
@@ -608,6 +619,8 @@ public class RepliconModelImpl extends BaseModelImpl<Replicon>
 		repliconModelImpl._setOriginalCompanyId = false;
 
 		repliconModelImpl._setModifiedDate = false;
+
+		repliconModelImpl._originalProjectName = repliconModelImpl._projectName;
 
 		repliconModelImpl._columnBitmask = 0;
 	}
@@ -795,6 +808,7 @@ public class RepliconModelImpl extends BaseModelImpl<Replicon>
 	private Date _modifiedDate;
 	private boolean _setModifiedDate;
 	private String _projectName;
+	private String _originalProjectName;
 	private Date _startTime;
 	private Date _endTime;
 	private long _columnBitmask;

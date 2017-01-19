@@ -499,6 +499,172 @@ public class RepliconUtil {
 	}
 
 	/**
+	* Returns all the replicons where projectName = &#63;.
+	*
+	* @param projectName the project name
+	* @return the matching replicons
+	*/
+	public static List<Replicon> findByProjectName(java.lang.String projectName) {
+		return getPersistence().findByProjectName(projectName);
+	}
+
+	/**
+	* Returns a range of all the replicons where projectName = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link RepliconModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param projectName the project name
+	* @param start the lower bound of the range of replicons
+	* @param end the upper bound of the range of replicons (not inclusive)
+	* @return the range of matching replicons
+	*/
+	public static List<Replicon> findByProjectName(
+		java.lang.String projectName, int start, int end) {
+		return getPersistence().findByProjectName(projectName, start, end);
+	}
+
+	/**
+	* Returns an ordered range of all the replicons where projectName = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link RepliconModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param projectName the project name
+	* @param start the lower bound of the range of replicons
+	* @param end the upper bound of the range of replicons (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of matching replicons
+	*/
+	public static List<Replicon> findByProjectName(
+		java.lang.String projectName, int start, int end,
+		OrderByComparator<Replicon> orderByComparator) {
+		return getPersistence()
+				   .findByProjectName(projectName, start, end, orderByComparator);
+	}
+
+	/**
+	* Returns an ordered range of all the replicons where projectName = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link RepliconModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param projectName the project name
+	* @param start the lower bound of the range of replicons
+	* @param end the upper bound of the range of replicons (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @param retrieveFromCache whether to retrieve from the finder cache
+	* @return the ordered range of matching replicons
+	*/
+	public static List<Replicon> findByProjectName(
+		java.lang.String projectName, int start, int end,
+		OrderByComparator<Replicon> orderByComparator, boolean retrieveFromCache) {
+		return getPersistence()
+				   .findByProjectName(projectName, start, end,
+			orderByComparator, retrieveFromCache);
+	}
+
+	/**
+	* Returns the first replicon in the ordered set where projectName = &#63;.
+	*
+	* @param projectName the project name
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching replicon
+	* @throws NoSuchRepliconException if a matching replicon could not be found
+	*/
+	public static Replicon findByProjectName_First(
+		java.lang.String projectName,
+		OrderByComparator<Replicon> orderByComparator)
+		throws com.liferay.gs.hackathon.exception.NoSuchRepliconException {
+		return getPersistence()
+				   .findByProjectName_First(projectName, orderByComparator);
+	}
+
+	/**
+	* Returns the first replicon in the ordered set where projectName = &#63;.
+	*
+	* @param projectName the project name
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching replicon, or <code>null</code> if a matching replicon could not be found
+	*/
+	public static Replicon fetchByProjectName_First(
+		java.lang.String projectName,
+		OrderByComparator<Replicon> orderByComparator) {
+		return getPersistence()
+				   .fetchByProjectName_First(projectName, orderByComparator);
+	}
+
+	/**
+	* Returns the last replicon in the ordered set where projectName = &#63;.
+	*
+	* @param projectName the project name
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching replicon
+	* @throws NoSuchRepliconException if a matching replicon could not be found
+	*/
+	public static Replicon findByProjectName_Last(
+		java.lang.String projectName,
+		OrderByComparator<Replicon> orderByComparator)
+		throws com.liferay.gs.hackathon.exception.NoSuchRepliconException {
+		return getPersistence()
+				   .findByProjectName_Last(projectName, orderByComparator);
+	}
+
+	/**
+	* Returns the last replicon in the ordered set where projectName = &#63;.
+	*
+	* @param projectName the project name
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching replicon, or <code>null</code> if a matching replicon could not be found
+	*/
+	public static Replicon fetchByProjectName_Last(
+		java.lang.String projectName,
+		OrderByComparator<Replicon> orderByComparator) {
+		return getPersistence()
+				   .fetchByProjectName_Last(projectName, orderByComparator);
+	}
+
+	/**
+	* Returns the replicons before and after the current replicon in the ordered set where projectName = &#63;.
+	*
+	* @param projectId the primary key of the current replicon
+	* @param projectName the project name
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the previous, current, and next replicon
+	* @throws NoSuchRepliconException if a replicon with the primary key could not be found
+	*/
+	public static Replicon[] findByProjectName_PrevAndNext(long projectId,
+		java.lang.String projectName,
+		OrderByComparator<Replicon> orderByComparator)
+		throws com.liferay.gs.hackathon.exception.NoSuchRepliconException {
+		return getPersistence()
+				   .findByProjectName_PrevAndNext(projectId, projectName,
+			orderByComparator);
+	}
+
+	/**
+	* Removes all the replicons where projectName = &#63; from the database.
+	*
+	* @param projectName the project name
+	*/
+	public static void removeByProjectName(java.lang.String projectName) {
+		getPersistence().removeByProjectName(projectName);
+	}
+
+	/**
+	* Returns the number of replicons where projectName = &#63;.
+	*
+	* @param projectName the project name
+	* @return the number of matching replicons
+	*/
+	public static int countByProjectName(java.lang.String projectName) {
+		return getPersistence().countByProjectName(projectName);
+	}
+
+	/**
 	* Caches the replicon in the entity cache if it is enabled.
 	*
 	* @param replicon the replicon
