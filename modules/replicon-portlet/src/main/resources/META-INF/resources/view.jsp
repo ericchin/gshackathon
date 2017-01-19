@@ -12,11 +12,34 @@ SimpleDateFormat dtDay = new SimpleDateFormat("MMM d");
 %>
 
 
-<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+<!-- <link href="https://fonts.googleapis.com/css?family=Maven+Pro|Proza+Libre|Source+Sans+Pro" rel="stylesheet"> -->
+<!-- <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet"> -->
+<link href="https://fonts.googleapis.com/css?family=Merriweather|Source+Sans+Pro" rel="stylesheet">
+
 
 <style>
 	body {
+		/*font-family: 'Proza Libre', sans-serif;*/
+		/*font-family: 'Maven Pro', sans-serif;*/
 		font-family: 'Source Sans Pro', sans-serif;
+	}
+
+	h1 {
+		/*font-weight: bold;*/
+		/*font-family: 'Merriweather', sans-serif;*/
+	}
+
+	.table-responsive {
+		margin: 10px;
+	}
+
+	.table {
+		font-size: 14px;
+	}
+
+	.table th {
+		font-size: 16px;
+		font-weight: bold;
 	}
 </style>
 
@@ -24,9 +47,11 @@ SimpleDateFormat dtDay = new SimpleDateFormat("MMM d");
 	List<Replicon> repliconList = (List<Replicon>) renderRequest.getAttribute(RepliconConstants.REP_ENTRIES);
 %>
 
+
 <div class="replicon-portlet">
-	<h1>Replicon (All Entries)</h1>
+
 	<div class="table-responsive table-day">
+		<h1>Replicon (All Entries)</h1>
 	    <table class="table table-striped">
 	        <thead>
 	        	<tr>
@@ -66,8 +91,8 @@ SimpleDateFormat dtDay = new SimpleDateFormat("MMM d");
 
 	<br>
 
-	<h1>Replicon (Per Client)</h1>
 	<div class="table-responsive table-project">
+		<h1>Replicon (Per Client)</h1>
 	    <table class="table table-striped">
 	        <thead>
 	        	<tr>
@@ -77,12 +102,17 @@ SimpleDateFormat dtDay = new SimpleDateFormat("MMM d");
 	        </thead>
 
 	        <tbody>
+			<%
+				for (Replicon repliconObj : repliconList) {
 
+			%>
 				<tr>
-					<td>First Test Client</td>
+					<td><%= repliconObj.getProjectName() %></td>
 					<td>12.0</td>
 				</tr>
-
+			<%
+				}
+			%>
 	        </tbody>
 	    </table>
 	</div>
@@ -99,7 +129,7 @@ SimpleDateFormat dtDay = new SimpleDateFormat("MMM d");
 <!-- REFERENCE -->
 
 
-
+<%--
 <div class="replicon-portlet">
 	<div id="tsGrid" class="timesheetGrid">
 		<table class="timesheet" id="tsGridTable" eventtarget="grid">
@@ -278,4 +308,4 @@ SimpleDateFormat dtDay = new SimpleDateFormat("MMM d");
 	<div id="timesheetHud_columnContainer"></div><div id="timesheetHud_footerContainer"></div><div id="timesheetHud_toolbarContainer"></div></div>
 
 
-</div>
+</div> --%>
