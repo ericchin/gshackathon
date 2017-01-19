@@ -44,6 +44,7 @@ public class RepliconPortlet extends MVCPortlet {
 		{ //TODO REMOVE
 			repliconEntries = new ArrayList<>();
 		}
+
 		// get project names
 		Set<String> projNames = repliconLocalService.getProjectNames();
 		{ // TODO REMOVE
@@ -58,8 +59,14 @@ public class RepliconPortlet extends MVCPortlet {
 
 		// populate total
 
-		for (String pName : projNames){
-			projectsTotals.put(pName, 0.0);
+		double absoluteTotal = 0.0;
+		for (String pName : projNames) {
+			double projTotal = repliconLocalService.getTotalHoursByProjectName(pName);
+			{// TODO REMOVE
+				projTotal = 0.0;
+			}
+			projectsTotals.put(pName, projTotal);
+			absoluteTotal += projTotal;
 		}
 
 		// TODO Replace Sample data repliconEntries
@@ -88,6 +95,7 @@ public class RepliconPortlet extends MVCPortlet {
 		renderRequest.setAttribute(AVAIL_PROJS_ATTR, projectsTotals);
 		renderRequest.setAttribute(TODAY_ATTR, new Date());
 		renderRequest.setAttribute(REP_ENTRIES, repliconEntries);
+		renderRequest.setAttribute(ABSOL_TOTAL, absoluteTotal);
 
 		super.doView(renderRequest, renderResponse);
 	}
