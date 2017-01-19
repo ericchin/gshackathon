@@ -27,7 +27,8 @@ import aQute.bnd.annotation.ProviderType;
  */
 @ProviderType
 public class RepliconImpl extends RepliconBaseImpl {
-	/*
+
+	/**
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never reference this class directly. All methods that expect a replicon model instance should use the {@link com.liferay.gs.hackathon.model.Replicon} interface instead.
@@ -40,4 +41,5 @@ public class RepliconImpl extends RepliconBaseImpl {
 		double totalTime = (this.getEndTime().getTime() - this.getStartTime().getTime()) / divisionFactorToGetHours;
 		return totalTime;
 	}
+
 }

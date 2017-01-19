@@ -18,6 +18,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Application;
 
+import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.Validator;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
@@ -30,6 +32,46 @@ import org.osgi.service.component.annotations.Reference;
 	service = Application.class
 )
 public class RepliconUpdateAction extends Application {
+
+	@Path("/hours")
+	@POST
+	@Produces("application/json")
+	public String getHoursWorked(String json) throws Exception {
+		JSONObject request = JSONFactoryUtil.createJSONObject(json);
+
+		if (_log.isDebugEnabled()) {
+			_log.debug("Receiving request: \n" + request.toString(2));
+		}
+
+		JSONObject req = request.getJSONObject("request");
+
+		JSONObject intent = req.getJSONObject("intent");
+
+		String projectName = StringPool.BLANK;
+
+		if (intent != null) {
+			JSONObject slots = intent.getJSONObject("slots");
+
+			JSONObject projectSlot = slots.getJSONObject("projectslot");
+
+			projectName = projectSlot.getString("value");
+		}
+
+		JSONObject response = _generateResponse(
+			"There was an error with your command. Please try again");
+
+		if (Validator.isNotNull(projectName)) {
+			response = _generateResponse(
+				"8 hours have been billed for project " +
+					projectName + " today.");
+		}
+
+		if (_log.isDebugEnabled()) {
+			_log.debug("Sending response: \n" + response.toString(2));
+		}
+
+		return response.toJSONString();
+	}
 
 	@Override
 	public Set<Object> getSingletons() {

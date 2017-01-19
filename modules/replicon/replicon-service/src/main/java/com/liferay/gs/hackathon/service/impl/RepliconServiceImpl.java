@@ -41,7 +41,12 @@ import java.util.Date;
  */
 @ProviderType
 public class RepliconServiceImpl extends RepliconServiceBaseImpl {
-	/*
+
+	public Replicon addRepliconProject(JSONObject json) {
+		return repliconLocalService.addRepliconProject(json);
+	}
+
+	/**
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never reference this class directly. Always use {@link com.liferay.gs.hackathon.service.RepliconServiceUtil} to access the replicon remote service.
@@ -56,10 +61,6 @@ public class RepliconServiceImpl extends RepliconServiceBaseImpl {
 
 		return repliconLocalService.addRepliconProject(
 			projectName, startTime, endTime);
-	}
-
-	public Replicon addRepliconProject(JSONObject json) {
-		return repliconLocalService.addRepliconProject(json);
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(RepliconServiceImpl.class);

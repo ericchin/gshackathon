@@ -30,6 +30,7 @@ import com.liferay.portal.kernel.util.StringPool;
 
 import java.text.DateFormat;
 import java.text.ParseException;
+
 import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedList;
@@ -52,81 +53,27 @@ import java.util.concurrent.TimeUnit;
  */
 @ProviderType
 public class RepliconLocalServiceImpl extends RepliconLocalServiceBaseImpl {
-	/*
-	 * NOTE FOR DEVELOPERS:
-	 *
-	 * Never reference this class directly. Always use {@link com.liferay.gs.hackathon.service.RepliconLocalServiceUtil} to access the replicon local service.
-	 */
-
-	public Replicon addRepliconProject(ServiceContext serviceContext) {
-		long projectId = counterLocalService.increment(
-			Replicon.class.getName());
-
-		Replicon replicon = repliconPersistence.create(projectId);
-
-		long userId = serviceContext.getUserId();
-
-		String userName = StringPool.BLANK;
-
-		User user = userLocalService.fetchUser(userId);
-
-		if (user != null) {
-			userName = user.getScreenName();
-		}
-
-		String projectName = (String) serviceContext.getAttribute(
-			RepliconConstants.PROJECT_NAME);
-
-		Date start = (Date) serviceContext.getAttribute(
-			RepliconConstants.START_TIME);
-
-		Date end = (Date) serviceContext.getAttribute(
-			RepliconConstants.END_TIME);
-
-		replicon.setGroupId(serviceContext.getScopeGroupId());
-		replicon.setCompanyId(serviceContext.getCompanyId());
-		replicon.setUserId(serviceContext.getUserId());
-		replicon.setUserName(userName);
-		replicon.setCreateDate(new Date());
-		replicon.setModifiedDate(new Date());
-
-		replicon.setProjectName(projectName);
-		replicon.setStartTime(start);
-		replicon.setEndTime(end);
-
-		return repliconPersistence.update(replicon);
-	}
-
-    public List<Replicon> getAllProjects() {
-        return repliconPersistence.findAll();
-    }
-
-	public Replicon addRepliconProject(
-		String projectName, Date startTime, Date endTime) {
-
-		ServiceContext serviceContext = new ServiceContext();
-
-		serviceContext.setAttribute(
-			RepliconConstants.PROJECT_NAME, projectName);
-		serviceContext.setAttribute(RepliconConstants.START_TIME, startTime);
-		serviceContext.setAttribute(RepliconConstants.END_TIME, endTime);
-
-		return addRepliconProject(serviceContext);
-	}
 
 	public Replicon addRepliconProject(JSONObject json) {
+
 		// Parse JSON Object
+
 		JSONObject request = json.getJSONObject("request");
+
 		JSONObject intent = request.getJSONObject("intent");
+
 		JSONObject slots = intent.getJSONObject("slots");
 
 		JSONObject startTimeSlot = slots.getJSONObject("starttimeslot");
+
 		String startTime = startTimeSlot.getString("value");
 
 		JSONObject endTimeSlot = slots.getJSONObject("endtimeslot");
+
 		String endTime = endTimeSlot.getString("value");
 
 		JSONObject projectSlot = slots.getJSONObject("projectslot");
+
 		String projectName = projectSlot.getString("value");
 
 		if (_log.isDebugEnabled()) {
@@ -186,6 +133,68 @@ public class RepliconLocalServiceImpl extends RepliconLocalServiceBaseImpl {
         }
         return totalHours;
     }
+
+	/**
+	 * NOTE FOR DEVELOPERS:
+	 *
+	 * Never reference this class directly. Always use {@link com.liferay.gs.hackathon.service.RepliconLocalServiceUtil} to access the replicon local service.
+	 */
+
+	public Replicon addRepliconProject(ServiceContext serviceContext) {
+		long projectId = counterLocalService.increment(
+			Replicon.class.getName());
+
+		Replicon replicon = repliconPersistence.create(projectId);
+
+		long userId = serviceContext.getUserId();
+
+		String userName = StringPool.BLANK;
+
+		User user = userLocalService.fetchUser(userId);
+
+		if (user != null) {
+			userName = user.getScreenName();
+		}
+
+		String projectName = (String)serviceContext.getAttribute(
+			RepliconConstants.PROJECT_NAME);
+
+		Date start = (Date)serviceContext.getAttribute(
+			RepliconConstants.START_TIME);
+
+		Date end = (Date)serviceContext.getAttribute(
+			RepliconConstants.END_TIME);
+
+		replicon.setGroupId(serviceContext.getScopeGroupId());
+		replicon.setCompanyId(serviceContext.getCompanyId());
+		replicon.setUserId(serviceContext.getUserId());
+		replicon.setUserName(userName);
+		replicon.setCreateDate(new Date());
+		replicon.setModifiedDate(new Date());
+
+		replicon.setProjectName(projectName);
+		replicon.setStartTime(start);
+		replicon.setEndTime(end);
+
+		return repliconPersistence.update(replicon);
+	}
+
+	public Replicon addRepliconProject(
+		String projectName, Date startTime, Date endTime) {
+
+		ServiceContext serviceContext = new ServiceContext();
+
+		serviceContext.setAttribute(
+			RepliconConstants.PROJECT_NAME, projectName);
+		serviceContext.setAttribute(RepliconConstants.START_TIME, startTime);
+		serviceContext.setAttribute(RepliconConstants.END_TIME, endTime);
+
+		return addRepliconProject(serviceContext);
+	}
+
+	public List<Replicon> getAllProjects() {
+		return repliconPersistence.findAll();
+	}
 
 	private static final String DATE_FORMAT_PATTERN = "HH:mm";
 
