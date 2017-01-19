@@ -1,5 +1,7 @@
 package com.liferay.gs.hackathon.portlet;
 
+import com.liferay.gs.hackathon.service.RepliconLocalService;
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
 
 import javax.portlet.Portlet;
@@ -8,6 +10,7 @@ import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 
 import java.io.IOException;
 import java.util.*;
@@ -35,6 +38,12 @@ public class RepliconPortlet extends MVCPortlet {
 	public void doView(RenderRequest renderRequest, RenderResponse renderResponse) throws IOException, PortletException {
 		super.doView(renderRequest, renderResponse);
 
+		try {
+			repliconLocalService.getReplicon(0);
+		} catch (PortalException e) {
+			e.printStackTrace();
+		}
+
 		List<String> projects = new ArrayList<>();
 		// TODO Replace Sample Data
 		projects.add("Some Project 1");
@@ -58,6 +67,8 @@ public class RepliconPortlet extends MVCPortlet {
 
 		renderRequest.setAttribute(AVAIL_PROJS_ATTR, projects);
 		renderRequest.setAttribute(TODAY_ATTR, new Date());
-
 	}
+
+	private @Reference
+	RepliconLocalService repliconLocalService;
 }
