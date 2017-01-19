@@ -112,7 +112,6 @@ SimpleDateFormat dtDay = new SimpleDateFormat("MMM d");
 			%>
 				<tr>
 					<td><%= repliconObj.getProjectName() %></td>
-					<td><%= repliconObj.getProjectName() %></td>
 					<td>12.0</td>
 				</tr>
 			<%
