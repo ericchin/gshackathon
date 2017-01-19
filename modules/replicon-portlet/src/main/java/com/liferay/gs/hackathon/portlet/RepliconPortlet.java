@@ -4,20 +4,17 @@ import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.exportimport.kernel.lar.StagedModelType;
 import com.liferay.gs.hackathon.model.Replicon;
 import com.liferay.gs.hackathon.service.RepliconLocalService;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.BaseModel;
 import com.liferay.portal.kernel.model.CacheModel;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
+import com.liferay.portal.kernel.service.ServiceContext;
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 
 import javax.portlet.Portlet;
 import javax.portlet.PortletException;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
-
-import com.liferay.portal.kernel.service.ServiceContext;
-import org.osgi.service.component.annotations.Component;
-import org.osgi.service.component.annotations.Reference;
-
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.*;
@@ -53,6 +50,7 @@ public class RepliconPortlet extends MVCPortlet {
 			projNames = new HashSet<>();
 			projNames.add("Random Project Name 1");
 			projNames.add("Random Project Name 2");
+			projNames.add("Random Project Name 3");
 		}
 
 		//repliconLocalService.getTotalHoursByProjectName();
@@ -66,7 +64,7 @@ public class RepliconPortlet extends MVCPortlet {
 
 		// TODO Replace Sample data repliconEntries
 		{ //TODO REMOVE
-			 int myCount = 3;
+			 int myCount = 5;
 			 while (myCount-- > 0) {
 			 	Replicon curReplicon = new MyRepliconImpl();
 			 	String pName = (String)(projNames.toArray()[myCount % projNames.size()]);
@@ -78,7 +76,7 @@ public class RepliconPortlet extends MVCPortlet {
 			 	repliconEntries.add(curReplicon);
 			 }
 			Replicon curReplicon = new MyRepliconImpl();
-			curReplicon.setProjectName("My Random Project " + myCount);
+			curReplicon.setProjectName((String)(projNames.toArray()[0]));
 			curReplicon.setStartTime(new Date());
 			Date tmp = new Date();
 			tmp.setTime(tmp.getTime() + 3600000);
