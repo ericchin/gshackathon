@@ -54,9 +54,12 @@ public interface RepliconService extends BaseService {
 	 */
 	public Replicon addRepliconProject(ServiceContext serviceContext);
 
-	public Replicon addRepliconProject(long companyId, long userId,
-		java.lang.String startTime, java.lang.String endTime,
-		java.lang.String projectName);
+	public Replicon addRepliconProject(java.lang.String projectName,
+		java.lang.String startTime, java.lang.String endTime);
+
+	public Replicon addRepliconProject(java.lang.String startTime,
+		java.lang.String endTime, java.lang.String projectName,
+		ServiceContext serviceContext);
 
 	/**
 	* Returns the OSGi service identifier.

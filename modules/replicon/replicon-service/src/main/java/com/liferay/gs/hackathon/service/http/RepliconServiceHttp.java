@@ -84,15 +84,43 @@ public class RepliconServiceHttp {
 	}
 
 	public static com.liferay.gs.hackathon.model.Replicon addRepliconProject(
-		HttpPrincipal httpPrincipal, long companyId, long userId,
-		java.lang.String startTime, java.lang.String endTime,
-		java.lang.String projectName) {
+		HttpPrincipal httpPrincipal, java.lang.String startTime,
+		java.lang.String endTime, java.lang.String projectName,
+		com.liferay.portal.kernel.service.ServiceContext serviceContext) {
 		try {
 			MethodKey methodKey = new MethodKey(RepliconServiceUtil.class,
 					"addRepliconProject", _addRepliconProjectParameterTypes1);
 
 			MethodHandler methodHandler = new MethodHandler(methodKey,
-					companyId, userId, startTime, endTime, projectName);
+					startTime, endTime, projectName, serviceContext);
+
+			Object returnObj = null;
+
+			try {
+				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
+			}
+			catch (Exception e) {
+				throw new com.liferay.portal.kernel.exception.SystemException(e);
+			}
+
+			return (com.liferay.gs.hackathon.model.Replicon)returnObj;
+		}
+		catch (com.liferay.portal.kernel.exception.SystemException se) {
+			_log.error(se, se);
+
+			throw se;
+		}
+	}
+
+	public static com.liferay.gs.hackathon.model.Replicon addRepliconProject(
+		HttpPrincipal httpPrincipal, java.lang.String projectName,
+		java.lang.String startTime, java.lang.String endTime) {
+		try {
+			MethodKey methodKey = new MethodKey(RepliconServiceUtil.class,
+					"addRepliconProject", _addRepliconProjectParameterTypes2);
+
+			MethodHandler methodHandler = new MethodHandler(methodKey,
+					projectName, startTime, endTime);
 
 			Object returnObj = null;
 
@@ -117,7 +145,12 @@ public class RepliconServiceHttp {
 			com.liferay.portal.kernel.service.ServiceContext.class
 		};
 	private static final Class<?>[] _addRepliconProjectParameterTypes1 = new Class[] {
-			long.class, long.class, java.lang.String.class,
-			java.lang.String.class, java.lang.String.class
+			java.lang.String.class, java.lang.String.class,
+			java.lang.String.class,
+			com.liferay.portal.kernel.service.ServiceContext.class
+		};
+	private static final Class<?>[] _addRepliconProjectParameterTypes2 = new Class[] {
+			java.lang.String.class, java.lang.String.class,
+			java.lang.String.class
 		};
 }

@@ -40,10 +40,19 @@ public class RepliconServiceWrapper implements RepliconService,
 
 	@Override
 	public com.liferay.gs.hackathon.model.Replicon addRepliconProject(
-		long companyId, long userId, java.lang.String startTime,
-		java.lang.String endTime, java.lang.String projectName) {
-		return _repliconService.addRepliconProject(companyId, userId,
-			startTime, endTime, projectName);
+		java.lang.String projectName, java.lang.String startTime,
+		java.lang.String endTime) {
+		return _repliconService.addRepliconProject(projectName, startTime,
+			endTime);
+	}
+
+	@Override
+	public com.liferay.gs.hackathon.model.Replicon addRepliconProject(
+		java.lang.String startTime, java.lang.String endTime,
+		java.lang.String projectName,
+		com.liferay.portal.kernel.service.ServiceContext serviceContext) {
+		return _repliconService.addRepliconProject(startTime, endTime,
+			projectName, serviceContext);
 	}
 
 	/**
