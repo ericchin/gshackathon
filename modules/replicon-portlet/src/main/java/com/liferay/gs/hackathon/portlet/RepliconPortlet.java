@@ -36,7 +36,6 @@ public class RepliconPortlet extends MVCPortlet {
 
 	@Override
 	public void doView(RenderRequest renderRequest, RenderResponse renderResponse) throws IOException, PortletException {
-		super.doView(renderRequest, renderResponse);
 
 		try {
 			repliconLocalService.getReplicon(0);
@@ -45,6 +44,7 @@ public class RepliconPortlet extends MVCPortlet {
 		}
 
 		List<String> projects = new ArrayList<>();
+
 		// TODO Replace Sample Data
 		projects.add("Some Project 1");
 		projects.add("Some Project 2");
@@ -67,6 +67,8 @@ public class RepliconPortlet extends MVCPortlet {
 
 		renderRequest.setAttribute(AVAIL_PROJS_ATTR, projects);
 		renderRequest.setAttribute(TODAY_ATTR, new Date());
+
+		super.doView(renderRequest, renderResponse);
 	}
 
 	private @Reference
