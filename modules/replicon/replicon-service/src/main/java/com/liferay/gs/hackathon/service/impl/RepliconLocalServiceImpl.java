@@ -75,10 +75,10 @@ public class RepliconLocalServiceImpl extends RepliconLocalServiceBaseImpl {
 		String projectName = (String) serviceContext.getAttribute(
 			RepliconConstants.PROJECT_NAME);
 
-		Date startTime = (Date) serviceContext.getAttribute(
+		Date start = (Date) serviceContext.getAttribute(
 			RepliconConstants.START_TIME);
 
-		Date endTime = (Date) serviceContext.getAttribute(
+		Date end = (Date) serviceContext.getAttribute(
 			RepliconConstants.END_TIME);
 
 		replicon.setGroupId(serviceContext.getScopeGroupId());
@@ -89,8 +89,8 @@ public class RepliconLocalServiceImpl extends RepliconLocalServiceBaseImpl {
 		replicon.setModifiedDate(new Date());
 
 		replicon.setProjectName(projectName);
-		replicon.setStartTime(new Date());
-		replicon.setEndTime(new Date());
+		replicon.setStartTime(start);
+		replicon.setEndTime(end);
 
 		return repliconPersistence.update(replicon);
 	}
@@ -140,7 +140,12 @@ public class RepliconLocalServiceImpl extends RepliconLocalServiceBaseImpl {
 			Date start = dateFormat.parse(startTime);
 			Date end = dateFormat.parse(endTime);
 
-			addRepliconProject(projectName, start, end);
+			if (_log.isDebugEnabled()) {
+				_log.debug("Start Date: " + start.getTime());
+				_log.debug("End Date:  " + end.getTime());
+			}
+
+			return addRepliconProject(projectName, start, end);
 		}
 		catch (ParseException pe) {
 			_log.error(pe.getMessage());

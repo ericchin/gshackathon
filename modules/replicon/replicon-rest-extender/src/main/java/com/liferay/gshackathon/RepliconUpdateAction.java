@@ -73,15 +73,20 @@ public class RepliconUpdateAction extends Application {
 	public String update(String json) throws Exception {
 		JSONObject request = JSONFactoryUtil.createJSONObject(json);
 
-		Replicon replicon = _repliconLocalService.addRepliconProject(request);
-
 		if (_log.isDebugEnabled()) {
 			_log.debug("Receiving request: \n" + request.toString(2));
 		}
 
+		Replicon replicon = _repliconLocalService.addRepliconProject(request);
+
 		JSONObject response = _generateResponse(
-			"Updated, thank you for being so kind and responsible. " +
-				replicon.getProjectName() + " has been added");
+			"There was an error with your command. Please try again");
+
+		if (replicon != null) {
+			response = _generateResponse(
+				"Updated, thank you for being so kind and responsible. " +
+					replicon.getProjectName() + " has been added");
+		}
 
 		if (_log.isDebugEnabled()) {
 			_log.debug("Sending response: \n" + response.toString(2));
