@@ -78,6 +78,11 @@ public interface RepliconLocalService extends BaseLocalService,
 
 	public Replicon addRepliconProject(JSONObject json);
 
+	/**
+	* NOTE FOR DEVELOPERS:
+	*
+	* Never reference this class directly. Always use {@link RepliconLocalServiceUtil} to access the replicon local service.
+	*/
 	public Replicon addRepliconProject(ServiceContext serviceContext);
 
 	public Replicon addRepliconProject(java.lang.String projectName,

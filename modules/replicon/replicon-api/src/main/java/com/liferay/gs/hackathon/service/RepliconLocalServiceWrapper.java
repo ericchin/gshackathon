@@ -51,6 +51,11 @@ public class RepliconLocalServiceWrapper implements RepliconLocalService,
 		return _repliconLocalService.addRepliconProject(json);
 	}
 
+	/**
+	* NOTE FOR DEVELOPERS:
+	*
+	* Never reference this class directly. Always use {@link RepliconLocalServiceUtil} to access the replicon local service.
+	*/
 	@Override
 	public com.liferay.gs.hackathon.model.Replicon addRepliconProject(
 		com.liferay.portal.kernel.service.ServiceContext serviceContext) {

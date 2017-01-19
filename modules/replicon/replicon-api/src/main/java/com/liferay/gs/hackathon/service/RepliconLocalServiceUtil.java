@@ -58,6 +58,11 @@ public class RepliconLocalServiceUtil {
 		return getService().addRepliconProject(json);
 	}
 
+	/**
+	* NOTE FOR DEVELOPERS:
+	*
+	* Never reference this class directly. Always use {@link RepliconLocalServiceUtil} to access the replicon local service.
+	*/
 	public static com.liferay.gs.hackathon.model.Replicon addRepliconProject(
 		com.liferay.portal.kernel.service.ServiceContext serviceContext) {
 		return getService().addRepliconProject(serviceContext);

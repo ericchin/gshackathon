@@ -66,6 +66,26 @@ import java.rmi.RemoteException;
 @ProviderType
 public class RepliconServiceSoap {
 	public static com.liferay.gs.hackathon.model.RepliconSoap addRepliconProject(
+		com.liferay.portal.kernel.json.JSONObject json)
+		throws RemoteException {
+		try {
+			com.liferay.gs.hackathon.model.Replicon returnValue = RepliconServiceUtil.addRepliconProject(json);
+
+			return com.liferay.gs.hackathon.model.RepliconSoap.toSoapModel(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	/**
+	* NOTE FOR DEVELOPERS:
+	*
+	* Never reference this class directly. Always use {@link RepliconServiceUtil} to access the replicon remote service.
+	*/
+	public static com.liferay.gs.hackathon.model.RepliconSoap addRepliconProject(
 		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws RemoteException {
 		try {
@@ -86,21 +106,6 @@ public class RepliconServiceSoap {
 		try {
 			com.liferay.gs.hackathon.model.Replicon returnValue = RepliconServiceUtil.addRepliconProject(projectName,
 					startTime, endTime);
-
-			return com.liferay.gs.hackathon.model.RepliconSoap.toSoapModel(returnValue);
-		}
-		catch (Exception e) {
-			_log.error(e, e);
-
-			throw new RemoteException(e.getMessage());
-		}
-	}
-
-	public static com.liferay.gs.hackathon.model.RepliconSoap addRepliconProject(
-		com.liferay.portal.kernel.json.JSONObject json)
-		throws RemoteException {
-		try {
-			com.liferay.gs.hackathon.model.Replicon returnValue = RepliconServiceUtil.addRepliconProject(json);
 
 			return com.liferay.gs.hackathon.model.RepliconSoap.toSoapModel(returnValue);
 		}

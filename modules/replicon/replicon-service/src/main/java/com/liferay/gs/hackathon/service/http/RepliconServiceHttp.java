@@ -57,10 +57,37 @@ import com.liferay.portal.kernel.util.MethodKey;
 public class RepliconServiceHttp {
 	public static com.liferay.gs.hackathon.model.Replicon addRepliconProject(
 		HttpPrincipal httpPrincipal,
-		com.liferay.portal.kernel.service.ServiceContext serviceContext) {
+		com.liferay.portal.kernel.json.JSONObject json) {
 		try {
 			MethodKey methodKey = new MethodKey(RepliconServiceUtil.class,
 					"addRepliconProject", _addRepliconProjectParameterTypes0);
+
+			MethodHandler methodHandler = new MethodHandler(methodKey, json);
+
+			Object returnObj = null;
+
+			try {
+				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
+			}
+			catch (Exception e) {
+				throw new com.liferay.portal.kernel.exception.SystemException(e);
+			}
+
+			return (com.liferay.gs.hackathon.model.Replicon)returnObj;
+		}
+		catch (com.liferay.portal.kernel.exception.SystemException se) {
+			_log.error(se, se);
+
+			throw se;
+		}
+	}
+
+	public static com.liferay.gs.hackathon.model.Replicon addRepliconProject(
+		HttpPrincipal httpPrincipal,
+		com.liferay.portal.kernel.service.ServiceContext serviceContext) {
+		try {
+			MethodKey methodKey = new MethodKey(RepliconServiceUtil.class,
+					"addRepliconProject", _addRepliconProjectParameterTypes1);
 
 			MethodHandler methodHandler = new MethodHandler(methodKey,
 					serviceContext);
@@ -88,7 +115,7 @@ public class RepliconServiceHttp {
 		java.util.Date startTime, java.util.Date endTime) {
 		try {
 			MethodKey methodKey = new MethodKey(RepliconServiceUtil.class,
-					"addRepliconProject", _addRepliconProjectParameterTypes1);
+					"addRepliconProject", _addRepliconProjectParameterTypes2);
 
 			MethodHandler methodHandler = new MethodHandler(methodKey,
 					projectName, startTime, endTime);
@@ -111,41 +138,14 @@ public class RepliconServiceHttp {
 		}
 	}
 
-	public static com.liferay.gs.hackathon.model.Replicon addRepliconProject(
-		HttpPrincipal httpPrincipal,
-		com.liferay.portal.kernel.json.JSONObject json) {
-		try {
-			MethodKey methodKey = new MethodKey(RepliconServiceUtil.class,
-					"addRepliconProject", _addRepliconProjectParameterTypes2);
-
-			MethodHandler methodHandler = new MethodHandler(methodKey, json);
-
-			Object returnObj = null;
-
-			try {
-				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
-			}
-			catch (Exception e) {
-				throw new com.liferay.portal.kernel.exception.SystemException(e);
-			}
-
-			return (com.liferay.gs.hackathon.model.Replicon)returnObj;
-		}
-		catch (com.liferay.portal.kernel.exception.SystemException se) {
-			_log.error(se, se);
-
-			throw se;
-		}
-	}
-
 	private static Log _log = LogFactoryUtil.getLog(RepliconServiceHttp.class);
 	private static final Class<?>[] _addRepliconProjectParameterTypes0 = new Class[] {
-			com.liferay.portal.kernel.service.ServiceContext.class
+			com.liferay.portal.kernel.json.JSONObject.class
 		};
 	private static final Class<?>[] _addRepliconProjectParameterTypes1 = new Class[] {
-			java.lang.String.class, java.util.Date.class, java.util.Date.class
+			com.liferay.portal.kernel.service.ServiceContext.class
 		};
 	private static final Class<?>[] _addRepliconProjectParameterTypes2 = new Class[] {
-			com.liferay.portal.kernel.json.JSONObject.class
+			java.lang.String.class, java.util.Date.class, java.util.Date.class
 		};
 }

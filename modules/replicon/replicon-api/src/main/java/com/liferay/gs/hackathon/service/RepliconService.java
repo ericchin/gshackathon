@@ -57,6 +57,11 @@ public interface RepliconService extends BaseService {
 	 */
 	public Replicon addRepliconProject(JSONObject json);
 
+	/**
+	* NOTE FOR DEVELOPERS:
+	*
+	* Never reference this class directly. Always use {@link RepliconServiceUtil} to access the replicon remote service.
+	*/
 	public Replicon addRepliconProject(ServiceContext serviceContext);
 
 	public Replicon addRepliconProject(java.lang.String projectName,
