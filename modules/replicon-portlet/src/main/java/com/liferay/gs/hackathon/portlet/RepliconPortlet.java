@@ -44,46 +44,61 @@ public class RepliconPortlet extends MVCPortlet {
 	public void doView(RenderRequest renderRequest, RenderResponse renderResponse) throws IOException, PortletException {
 
 		List<Replicon> repliconEntries = repliconLocalService.getAllProjects();
-		repliconEntries = new ArrayList<>();
 		{ //TODO REMOVE
-			int myCount = 3;
-			while (myCount-- > 0) {
-				Replicon curReplicon = new MyRepliconImpl();
-				curReplicon.setProjectName("My Random Project " + myCount);
-				curReplicon.setStartTime(new Date());
-				Date tmp = new Date();
-				tmp.setTime(tmp.getTime() + 3600000);
-				curReplicon.setEndTime(tmp);
-				repliconEntries.add(curReplicon);
-			}
+			repliconEntries = new ArrayList<>();
 		}
-		List<String> projects = new ArrayList<>();
-
-		// TODO Replace Sample Data
-		projects.add("Some Project 1");
-		projects.add("Some Project 2");
-
-		Map<String, Map<String, List<String>>> availableBillingAndActivity = new HashMap<>();
-
-		// TODO Replace Sample data
-		for (String proj: projects){
-			Map<String, List<String>> newBillActMap = new HashMap<>();
-			List<String> sampleBillOptions = new ArrayList<>();
-			sampleBillOptions.add("SampleBillOption 1");
-			sampleBillOptions.add("SampleBillOption 2");
-			List<String> sampleActivityOptions = new ArrayList<>();
-			sampleActivityOptions .add("SampleActOption 1");
-			sampleActivityOptions .add("SampleActOption 2");
-			newBillActMap.put("billings", sampleBillOptions);
-			newBillActMap.put("activities", sampleActivityOptions);
-			availableBillingAndActivity.put(proj, newBillActMap);
+		// get project names
+		Set<String> projNames = repliconLocalService.getProjectNames();
+		{ // TODO REMOVE
+			projNames = new HashSet<>();
+			projNames.add("Random Project Name 1");
+			projNames.add("Random Project Name 2");
 		}
 
-		renderRequest.setAttribute(AVAIL_PROJS_ATTR, projects);
+		//repliconLocalService.getTotalHoursByProjectName();
+		Map<String, Double>  projectsTotals = new HashMap<>();
+
+		// populate total
+
+		for (String pName : projNames){
+			projectsTotals.put(pName, 0.0);
+		}
+
+		// TODO Replace Sample data repliconEntries
+		{ //TODO REMOVE
+			 int myCount = 3;
+			 while (myCount-- > 0) {
+			 	Replicon curReplicon = new MyRepliconImpl();
+			 	String pName = (String)(projNames.toArray()[myCount % projNames.size()]);
+			 	curReplicon.setProjectName(pName);
+			 	curReplicon.setStartTime(new Date());
+			 	Date tmp = new Date();
+			 	tmp.setTime(tmp.getTime() + 3600000);
+			 	curReplicon.setEndTime(tmp);
+			 	repliconEntries.add(curReplicon);
+			 }
+			Replicon curReplicon = new MyRepliconImpl();
+			curReplicon.setProjectName("My Random Project " + myCount);
+			curReplicon.setStartTime(new Date());
+			Date tmp = new Date();
+			tmp.setTime(tmp.getTime() + 3600000);
+			curReplicon.setEndTime(tmp);
+			repliconEntries.add(curReplicon);
+		}
+
+
+		renderRequest.setAttribute(AVAIL_PROJS_ATTR, projectsTotals);
 		renderRequest.setAttribute(TODAY_ATTR, new Date());
 		renderRequest.setAttribute(REP_ENTRIES, repliconEntries);
 
 		super.doView(renderRequest, renderResponse);
+	}
+
+	private void addTotal (Map <String, Double> totalValues, String proj, double hours) {
+		if (totalValues.containsKey(proj)){
+			double curVal = totalValues.get(proj);
+			totalValues.replace(proj, curVal + hours);
+		}
 	}
 
 	private @Reference
@@ -93,7 +108,7 @@ public class RepliconPortlet extends MVCPortlet {
 	private static class MyRepliconImpl implements Replicon {
 		// TODO REMOVE
 
-		private String projectName;
+		private String projectName, bill, act;
 		private Date start, end;
 
 		@Override
@@ -233,6 +248,25 @@ public class RepliconPortlet extends MVCPortlet {
 		}
 
 		@Override
+		public String getBilling() {
+			return bill;
+		}
+
+		@Override
+		public void setBilling(String billing) {
+			bill = billing;
+		}
+
+		@Override
+		public String getActivity() {
+			return act;
+		}
+
+		@Override
+		public void setActivity(String activity) {
+		}
+
+		@Override
 		public boolean isNew() {
 			return false;
 		}
@@ -355,6 +389,13 @@ public class RepliconPortlet extends MVCPortlet {
 		@Override
 		public void persist() {
 
+		}
+
+		@Override
+		public double getTotalTimeInHours() {
+			double t = getEndTime().getTime() - getStartTime().getTime();
+			t /= 3600000.0;
+			return t;
 		}
 	}//TODO END REMOVE
 }
