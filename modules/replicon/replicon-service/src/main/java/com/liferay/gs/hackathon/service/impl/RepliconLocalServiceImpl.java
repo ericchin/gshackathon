@@ -32,7 +32,9 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * The implementation of the replicon local service.
@@ -173,6 +175,17 @@ public class RepliconLocalServiceImpl extends RepliconLocalServiceBaseImpl {
 
 		return null;
 	}
+
+    public int getTotalHoursByProjectName(String projectName){
+        List<Replicon> projects = repliconPersistence.findByProjectName(projectName);
+        int totalHours = 0;
+        for (Replicon r : projects) {
+            long diff = r.getEndTime().getTime() - r.getStartTime().getTime();
+            long diffInHours = TimeUnit.MILLISECONDS.toHours(diff);
+            totalHours += diffInHours;
+        }
+        return totalHours;
+    }
 
 	private static final String DATE_FORMAT_PATTERN = "HH:mm";
 

@@ -34,4 +34,10 @@ public class RepliconImpl extends RepliconBaseImpl {
 	 */
 	public RepliconImpl() {
 	}
+
+	public double getTotalTimeInHours() {
+		double divisionFactorToGetHours = 3600000.0;
+		double totalTime = (this.getEndTime().getTime() - this.getStartTime().getTime()) / divisionFactorToGetHours;
+		return totalTime;
+	}
 }
