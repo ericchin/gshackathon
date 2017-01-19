@@ -29,7 +29,9 @@
 
 				</th>
 
-				<th id="_77" class="columnHeader">Mon 23</th>
+
+
+				<th id="_77" class="columnHeader"><%= renderRequest.getAttribute(RepliconConstants.TODAY_ATTR) %></th>
 
 				<th id="_78" class="columnHeader">Tue 24</th>
 

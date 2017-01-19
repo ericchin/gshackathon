@@ -7,6 +7,9 @@
 <%@ taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %>
 <%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 
+<%@ page import="com.liferay.gs.hackathon.portlet.constants.RepliconConstants" %>
+
+
 <liferay-theme:defineObjects />
 
 <portlet:defineObjects />
