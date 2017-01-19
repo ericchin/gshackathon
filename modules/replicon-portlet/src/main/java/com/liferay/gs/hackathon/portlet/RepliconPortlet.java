@@ -96,6 +96,8 @@ public class RepliconPortlet extends MVCPortlet {
 	private static class MyRepliconImpl implements Replicon {
 		// TODO REMOVE
 
+		private String projectName, start, end;
+
 		@Override
 		public long getPrimaryKey() {
 			return 0;
@@ -208,7 +210,7 @@ public class RepliconPortlet extends MVCPortlet {
 
 		@Override
 		public void setProjectName(String projectName) {
-
+			projectName = projectName;
 		}
 
 		@Override
@@ -218,7 +220,7 @@ public class RepliconPortlet extends MVCPortlet {
 
 		@Override
 		public void setStartTime(String startTime) {
-
+			start = startTime;
 		}
 
 		@Override
@@ -228,7 +230,7 @@ public class RepliconPortlet extends MVCPortlet {
 
 		@Override
 		public void setEndTime(String endTime) {
-
+			end = endTime;
 		}
 
 		@Override
