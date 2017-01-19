@@ -18,8 +18,6 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.gs.hackathon.model.Replicon;
 import com.liferay.gs.hackathon.service.base.RepliconServiceBaseImpl;
-import com.liferay.gs.hackathon.util.RepliconConstants;
-import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -54,53 +52,14 @@ public class RepliconServiceImpl extends RepliconServiceBaseImpl {
 	}
 
 	public Replicon addRepliconProject(
-		String startTime, String endTime, String projectName,
-		ServiceContext serviceContext) {
+		String projectName, Date startTime, Date endTime) {
 
-		serviceContext.setAttribute(
-			RepliconConstants.PROJECT_NAME, projectName);
-
-		serviceContext.setAttribute(RepliconConstants.START_TIME, new Date());
-		serviceContext.setAttribute(RepliconConstants.END_TIME, new Date());
-
-		return repliconLocalService.addRepliconProject(serviceContext);
-	}
-
-	public Replicon addRepliconProject(
-		String projectName, String startTime, String endTime) {
-
-		ServiceContext serviceContext = new ServiceContext();
-
-		serviceContext.setAttribute(
-			RepliconConstants.PROJECT_NAME, projectName);
-		serviceContext.setAttribute(RepliconConstants.START_TIME, startTime);
-		serviceContext.setAttribute(RepliconConstants.END_TIME, endTime);
-
-		return repliconLocalService.addRepliconProject(serviceContext);
+		return repliconLocalService.addRepliconProject(
+			projectName, startTime, endTime);
 	}
 
 	public Replicon addRepliconProject(JSONObject json) {
-		// Parse JSON Object
-		JSONObject request = json.getJSONObject("request");
-		JSONObject intent = request.getJSONObject("intent");
-		JSONObject slots = intent.getJSONObject("slots");
-
-		JSONObject startTimeSlot = slots.getJSONObject("starttimeslot");
-		String startTime = startTimeSlot.getString("value");
-
-        JSONObject endTimeSlot = slots.getJSONObject("endtimeslot");
-        String endTime = endTimeSlot.getString("value");
-
-        JSONObject projectSlot = slots.getJSONObject("projectslot");
-        String projectName = projectSlot.getString("value");
-
-		if (_log.isDebugEnabled()) {
-			_log.debug("Project Name: " + projectName);
-			_log.debug("Start Time: " + startTime);
-			_log.debug("End Time: " + endTime);
-		}
-
-        return addRepliconProject(projectName, startTime, endTime);
+		return repliconLocalService.addRepliconProject(json);
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(RepliconServiceImpl.class);

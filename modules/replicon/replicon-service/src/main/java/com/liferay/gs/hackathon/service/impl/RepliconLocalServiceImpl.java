@@ -24,8 +24,13 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.service.ServiceContext;
+import com.liferay.portal.kernel.util.CalendarFactoryUtil;
+import com.liferay.portal.kernel.util.DateFormatFactoryUtil;
 import com.liferay.portal.kernel.util.StringPool;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -70,10 +75,10 @@ public class RepliconLocalServiceImpl extends RepliconLocalServiceBaseImpl {
 		String projectName = (String) serviceContext.getAttribute(
 			RepliconConstants.PROJECT_NAME);
 
-		String startTime = (String) serviceContext.getAttribute(
+		Date startTime = (Date) serviceContext.getAttribute(
 			RepliconConstants.START_TIME);
 
-		String endTime = (String) serviceContext.getAttribute(
+		Date endTime = (Date) serviceContext.getAttribute(
 			RepliconConstants.END_TIME);
 
 		replicon.setGroupId(serviceContext.getScopeGroupId());
@@ -95,20 +100,7 @@ public class RepliconLocalServiceImpl extends RepliconLocalServiceBaseImpl {
     }
 
 	public Replicon addRepliconProject(
-		String startTime, String endTime, String projectName,
-		ServiceContext serviceContext) {
-
-		serviceContext.setAttribute(
-			RepliconConstants.PROJECT_NAME, projectName);
-
-		serviceContext.setAttribute(RepliconConstants.START_TIME, new Date());
-		serviceContext.setAttribute(RepliconConstants.END_TIME, new Date());
-
-		return addRepliconProject(serviceContext);
-	}
-
-	public Replicon addRepliconProject(
-		String projectName, String startTime, String endTime) {
+		String projectName, Date startTime, Date endTime) {
 
 		ServiceContext serviceContext = new ServiceContext();
 
@@ -141,8 +133,23 @@ public class RepliconLocalServiceImpl extends RepliconLocalServiceBaseImpl {
 			_log.debug("End Time: " + endTime);
 		}
 
-		return addRepliconProject(projectName, startTime, endTime);
+		try {
+			DateFormat dateFormat = DateFormatFactoryUtil.getSimpleDateFormat(
+				DATE_FORMAT_PATTERN);
+
+			Date start = dateFormat.parse(startTime);
+			Date end = dateFormat.parse(endTime);
+
+			addRepliconProject(projectName, start, end);
+		}
+		catch (ParseException pe) {
+			_log.error(pe.getMessage());
+		}
+
+		return null;
 	}
+
+	private static final String DATE_FORMAT_PATTERN = "HH:mm";
 
 	private static Log _log = LogFactoryUtil.getLog(
 		RepliconLocalServiceImpl.class);
