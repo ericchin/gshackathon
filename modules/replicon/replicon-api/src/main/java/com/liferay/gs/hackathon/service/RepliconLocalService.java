@@ -41,6 +41,7 @@ import com.liferay.portal.kernel.util.OrderByComparator;
 
 import java.io.Serializable;
 
+import java.util.*;
 import java.util.Date;
 import java.util.List;
 
@@ -283,6 +284,9 @@ public interface RepliconLocalService extends BaseLocalService,
 	public List<Replicon> getRepliconsByUuidAndCompanyId(
 		java.lang.String uuid, long companyId, int start, int end,
 		OrderByComparator<Replicon> orderByComparator);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.Set<java.lang.String> getProjectNames();
 
 	/**
 	* Returns the number of rows matching the dynamic query.

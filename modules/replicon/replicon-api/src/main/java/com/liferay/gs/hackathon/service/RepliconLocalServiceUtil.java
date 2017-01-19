@@ -318,6 +318,10 @@ public class RepliconLocalServiceUtil {
 			orderByComparator);
 	}
 
+	public static java.util.Set<java.lang.String> getProjectNames() {
+		return getService().getProjectNames();
+	}
+
 	/**
 	* Returns the number of rows matching the dynamic query.
 	*

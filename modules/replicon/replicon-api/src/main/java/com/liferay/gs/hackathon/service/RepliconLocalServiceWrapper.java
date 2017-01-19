@@ -336,6 +336,11 @@ public class RepliconLocalServiceWrapper implements RepliconLocalService,
 			companyId, start, end, orderByComparator);
 	}
 
+	@Override
+	public java.util.Set<java.lang.String> getProjectNames() {
+		return _repliconLocalService.getProjectNames();
+	}
+
 	/**
 	* Returns the number of rows matching the dynamic query.
 	*
