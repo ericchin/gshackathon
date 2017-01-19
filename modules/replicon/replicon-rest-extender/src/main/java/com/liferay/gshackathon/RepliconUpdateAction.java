@@ -49,12 +49,17 @@ public class RepliconUpdateAction extends Application {
 
 		String projectName = StringPool.BLANK;
 
+		int hoursWorked = 0;
+
 		if (intent != null) {
 			JSONObject slots = intent.getJSONObject("slots");
 
 			JSONObject projectSlot = slots.getJSONObject("projectslot");
 
 			projectName = projectSlot.getString("value");
+
+			hoursWorked = _repliconLocalService.getTotalHoursByProjectName(
+				projectName);
 		}
 
 		JSONObject response = _generateResponse(
@@ -62,7 +67,7 @@ public class RepliconUpdateAction extends Application {
 
 		if (Validator.isNotNull(projectName)) {
 			response = _generateResponse(
-				"8 hours have been billed for project " +
+				hoursWorked + " hours have been billed for project " +
 					projectName + " today.");
 		}
 
