@@ -26,6 +26,8 @@
 		<column name="projectName" type="String" />
 		<column name="startTime" type="Date" />
 		<column name="endTime" type="Date" />
+        <column name="billing" type="String" />
+        <column name="activity" type="String" />
 
         <finder name="ProjectName" return-type="Collection">
             <finder-column name="projectName"/>
