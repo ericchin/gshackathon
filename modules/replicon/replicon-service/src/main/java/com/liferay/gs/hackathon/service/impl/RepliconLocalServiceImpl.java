@@ -114,7 +114,7 @@ public class RepliconLocalServiceImpl extends RepliconLocalServiceBaseImpl {
 				_log.debug("End Date:  " + end.getTime());
 			}
 
-			callRepliconWS(start, end);
+//			callRepliconWS(start, end);
 
 			return addRepliconProject(projectName, start, end);
 		}
@@ -125,24 +125,24 @@ public class RepliconLocalServiceImpl extends RepliconLocalServiceBaseImpl {
 		return null;
 	}
 
-	protected void callRepliconWS(Date startDate, Date endDate) {
-		String company = "liferay";
-		String username = "thiago.moreira";
-		String password = "gshackathon";
-
-		try {
-			br.com.thiagomoreira.replicon.Replicon replicon = new br.com.thiagomoreira.replicon.Replicon(company, username, password);
-
-			String uri = replicon.punchIn("urn:replicon-tenant:liferay3:user:120",
-					startDate);
-			replicon.punchOut("urn:replicon-tenant:liferay3:user:120",
-					endDate, uri);
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-	}
+//	protected void callRepliconWS(Date startDate, Date endDate) {
+//		String company = "liferay";
+//		String username = "thiago.moreira";
+//		String password = "gshackathon";
+//
+//		try {
+//			br.com.thiagomoreira.replicon.Replicon replicon = new br.com.thiagomoreira.replicon.Replicon(company, username, password);
+//
+//			String uri = replicon.punchIn("urn:replicon-tenant:liferay3:user:120",
+//					startDate);
+//			replicon.punchOut("urn:replicon-tenant:liferay3:user:120",
+//					endDate, uri);
+//
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//
+//	}
 
 	public int getTotalHoursByProjectName(String projectName){
         List<Replicon> projects = repliconPersistence.findByProjectName(projectName);
