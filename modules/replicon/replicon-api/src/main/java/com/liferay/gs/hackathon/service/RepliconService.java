@@ -20,6 +20,7 @@ import com.liferay.gs.hackathon.model.Replicon;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.jsonwebservice.JSONWebService;
 import com.liferay.portal.kernel.security.access.control.AccessControlled;
 import com.liferay.portal.kernel.service.BaseService;
@@ -52,6 +53,8 @@ public interface RepliconService extends BaseService {
 	 *
 	 * Never modify or reference this interface directly. Always use {@link RepliconServiceUtil} to access the replicon remote service. Add custom service methods to {@link com.liferay.gs.hackathon.service.impl.RepliconServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
+	public Replicon addRepliconProject(JSONObject json);
+
 	public Replicon addRepliconProject(ServiceContext serviceContext);
 
 	public Replicon addRepliconProject(java.lang.String projectName,

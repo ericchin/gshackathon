@@ -34,6 +34,12 @@ public class RepliconServiceWrapper implements RepliconService,
 
 	@Override
 	public com.liferay.gs.hackathon.model.Replicon addRepliconProject(
+		com.liferay.portal.kernel.json.JSONObject json) {
+		return _repliconService.addRepliconProject(json);
+	}
+
+	@Override
+	public com.liferay.gs.hackathon.model.Replicon addRepliconProject(
 		com.liferay.portal.kernel.service.ServiceContext serviceContext) {
 		return _repliconService.addRepliconProject(serviceContext);
 	}

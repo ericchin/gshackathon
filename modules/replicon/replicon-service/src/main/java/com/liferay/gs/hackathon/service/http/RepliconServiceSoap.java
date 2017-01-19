@@ -114,5 +114,20 @@ public class RepliconServiceSoap {
 		}
 	}
 
+	public static com.liferay.gs.hackathon.model.RepliconSoap addRepliconProject(
+		com.liferay.portal.kernel.json.JSONObject json)
+		throws RemoteException {
+		try {
+			com.liferay.gs.hackathon.model.Replicon returnValue = RepliconServiceUtil.addRepliconProject(json);
+
+			return com.liferay.gs.hackathon.model.RepliconSoap.toSoapModel(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
 	private static Log _log = LogFactoryUtil.getLog(RepliconServiceSoap.class);
 }

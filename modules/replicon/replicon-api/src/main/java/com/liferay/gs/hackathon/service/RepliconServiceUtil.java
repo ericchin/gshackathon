@@ -42,6 +42,11 @@ public class RepliconServiceUtil {
 	 * Never modify this class directly. Add custom service methods to {@link com.liferay.gs.hackathon.service.impl.RepliconServiceImpl} and rerun ServiceBuilder to regenerate this class.
 	 */
 	public static com.liferay.gs.hackathon.model.Replicon addRepliconProject(
+		com.liferay.portal.kernel.json.JSONObject json) {
+		return getService().addRepliconProject(json);
+	}
+
+	public static com.liferay.gs.hackathon.model.Replicon addRepliconProject(
 		com.liferay.portal.kernel.service.ServiceContext serviceContext) {
 		return getService().addRepliconProject(serviceContext);
 	}

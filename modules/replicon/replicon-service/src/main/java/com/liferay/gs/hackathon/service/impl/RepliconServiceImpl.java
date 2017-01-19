@@ -19,6 +19,8 @@ import aQute.bnd.annotation.ProviderType;
 import com.liferay.gs.hackathon.model.Replicon;
 import com.liferay.gs.hackathon.service.base.RepliconServiceBaseImpl;
 import com.liferay.gs.hackathon.util.RepliconConstants;
+import com.liferay.portal.kernel.json.JSONFactoryUtil;
+import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.service.ServiceContext;
 
 import java.util.Date;
@@ -74,5 +76,25 @@ public class RepliconServiceImpl extends RepliconServiceBaseImpl {
 
 		return repliconLocalService.addRepliconProject(serviceContext);
 	}
+
+	public Replicon addRepliconProject(JSONObject json) {
+		// Parse JSON Object
+		JSONObject request = json.getJSONObject("request");
+		JSONObject intent = request.getJSONObject("intent");
+		JSONObject slots = intent.getJSONObject("slots");
+
+		JSONObject startTimeSlot = slots.getJSONObject("starttimeslot");
+		String startTime = startTimeSlot.getString("value");
+
+        JSONObject endTimeSlot = slots.getJSONObject("endtimeslot");
+        String endTime = endTimeSlot.getString("value");
+
+        JSONObject projectSlot = slots.getJSONObject("projectslot");
+        String projectName = projectSlot.getString("value");
+
+        return addRepliconProject(projectName, startTime, endTime);
+	}
+
+
 
 }
