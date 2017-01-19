@@ -230,28 +230,30 @@ public interface RepliconModel extends BaseModel<Replicon>, GroupedModel,
 	 *
 	 * @return the start time of this replicon
 	 */
-	public Date getStartTime();
+	@AutoEscape
+	public String getStartTime();
 
 	/**
 	 * Sets the start time of this replicon.
 	 *
 	 * @param startTime the start time of this replicon
 	 */
-	public void setStartTime(Date startTime);
+	public void setStartTime(String startTime);
 
 	/**
 	 * Returns the end time of this replicon.
 	 *
 	 * @return the end time of this replicon
 	 */
-	public Date getEndTime();
+	@AutoEscape
+	public String getEndTime();
 
 	/**
 	 * Sets the end time of this replicon.
 	 *
 	 * @param endTime the end time of this replicon
 	 */
-	public void setEndTime(Date endTime);
+	public void setEndTime(String endTime);
 
 	@Override
 	public boolean isNew();

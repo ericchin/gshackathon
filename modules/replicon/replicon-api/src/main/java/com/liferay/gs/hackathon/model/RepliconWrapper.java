@@ -130,13 +130,13 @@ public class RepliconWrapper implements Replicon, ModelWrapper<Replicon> {
 			setProjectName(projectName);
 		}
 
-		Date startTime = (Date)attributes.get("startTime");
+		String startTime = (String)attributes.get("startTime");
 
 		if (startTime != null) {
 			setStartTime(startTime);
 		}
 
-		Date endTime = (Date)attributes.get("endTime");
+		String endTime = (String)attributes.get("endTime");
 
 		if (endTime != null) {
 			setEndTime(endTime);
@@ -199,6 +199,16 @@ public class RepliconWrapper implements Replicon, ModelWrapper<Replicon> {
 	}
 
 	/**
+	* Returns the end time of this replicon.
+	*
+	* @return the end time of this replicon
+	*/
+	@Override
+	public java.lang.String getEndTime() {
+		return _replicon.getEndTime();
+	}
+
+	/**
 	* Returns the project name of this replicon.
 	*
 	* @return the project name of this replicon
@@ -206,6 +216,16 @@ public class RepliconWrapper implements Replicon, ModelWrapper<Replicon> {
 	@Override
 	public java.lang.String getProjectName() {
 		return _replicon.getProjectName();
+	}
+
+	/**
+	* Returns the start time of this replicon.
+	*
+	* @return the start time of this replicon
+	*/
+	@Override
+	public java.lang.String getStartTime() {
+		return _replicon.getStartTime();
 	}
 
 	/**
@@ -259,16 +279,6 @@ public class RepliconWrapper implements Replicon, ModelWrapper<Replicon> {
 	}
 
 	/**
-	* Returns the end time of this replicon.
-	*
-	* @return the end time of this replicon
-	*/
-	@Override
-	public Date getEndTime() {
-		return _replicon.getEndTime();
-	}
-
-	/**
 	* Returns the modified date of this replicon.
 	*
 	* @return the modified date of this replicon
@@ -276,16 +286,6 @@ public class RepliconWrapper implements Replicon, ModelWrapper<Replicon> {
 	@Override
 	public Date getModifiedDate() {
 		return _replicon.getModifiedDate();
-	}
-
-	/**
-	* Returns the start time of this replicon.
-	*
-	* @return the start time of this replicon
-	*/
-	@Override
-	public Date getStartTime() {
-		return _replicon.getStartTime();
 	}
 
 	/**
@@ -374,7 +374,7 @@ public class RepliconWrapper implements Replicon, ModelWrapper<Replicon> {
 	* @param endTime the end time of this replicon
 	*/
 	@Override
-	public void setEndTime(Date endTime) {
+	public void setEndTime(java.lang.String endTime) {
 		_replicon.setEndTime(endTime);
 	}
 
@@ -460,7 +460,7 @@ public class RepliconWrapper implements Replicon, ModelWrapper<Replicon> {
 	* @param startTime the start time of this replicon
 	*/
 	@Override
-	public void setStartTime(Date startTime) {
+	public void setStartTime(java.lang.String startTime) {
 		_replicon.setStartTime(startTime);
 	}
 

@@ -15,7 +15,7 @@
 		<property name="createDate" type="org.hibernate.type.TimestampType" />
 		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
 		<property name="projectName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="startTime" type="org.hibernate.type.TimestampType" />
-		<property name="endTime" type="org.hibernate.type.TimestampType" />
+		<property name="startTime" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="endTime" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>
 </hibernate-mapping>

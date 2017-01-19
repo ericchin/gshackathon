@@ -138,18 +138,18 @@ public class RepliconCacheModel implements CacheModel<Replicon>, Externalizable 
 			repliconImpl.setProjectName(projectName);
 		}
 
-		if (startTime == Long.MIN_VALUE) {
-			repliconImpl.setStartTime(null);
+		if (startTime == null) {
+			repliconImpl.setStartTime(StringPool.BLANK);
 		}
 		else {
-			repliconImpl.setStartTime(new Date(startTime));
+			repliconImpl.setStartTime(startTime);
 		}
 
-		if (endTime == Long.MIN_VALUE) {
-			repliconImpl.setEndTime(null);
+		if (endTime == null) {
+			repliconImpl.setEndTime(StringPool.BLANK);
 		}
 		else {
-			repliconImpl.setEndTime(new Date(endTime));
+			repliconImpl.setEndTime(endTime);
 		}
 
 		repliconImpl.resetOriginalValues();
@@ -172,8 +172,8 @@ public class RepliconCacheModel implements CacheModel<Replicon>, Externalizable 
 		createDate = objectInput.readLong();
 		modifiedDate = objectInput.readLong();
 		projectName = objectInput.readUTF();
-		startTime = objectInput.readLong();
-		endTime = objectInput.readLong();
+		startTime = objectInput.readUTF();
+		endTime = objectInput.readUTF();
 	}
 
 	@Override
@@ -211,8 +211,19 @@ public class RepliconCacheModel implements CacheModel<Replicon>, Externalizable 
 			objectOutput.writeUTF(projectName);
 		}
 
-		objectOutput.writeLong(startTime);
-		objectOutput.writeLong(endTime);
+		if (startTime == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(startTime);
+		}
+
+		if (endTime == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(endTime);
+		}
 	}
 
 	public String uuid;
@@ -224,6 +235,6 @@ public class RepliconCacheModel implements CacheModel<Replicon>, Externalizable 
 	public long createDate;
 	public long modifiedDate;
 	public String projectName;
-	public long startTime;
-	public long endTime;
+	public String startTime;
+	public String endTime;
 }
