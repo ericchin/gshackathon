@@ -6,4 +6,5 @@ package com.liferay.gs.hackathon.portlet.constants;
 public interface RepliconConstants {
     String TODAY_ATTR = "todayDateAttributeKey";
     String AVAIL_PROJS_ATTR = "availableProjectAttributeKey";
+    String REP_ENTRIES = "repliconEntriesAttributeKey";
 }
