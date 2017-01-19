@@ -1,6 +1,7 @@
 package com.liferay.gshackathon;
 
-import com.liferay.gs.hackathon.service.RepliconService;
+import com.liferay.gs.hackathon.model.Replicon;
+import com.liferay.gs.hackathon.service.RepliconLocalService;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.log.Log;
@@ -72,12 +73,15 @@ public class RepliconUpdateAction extends Application {
 	public String update(String json) throws Exception {
 		JSONObject request = JSONFactoryUtil.createJSONObject(json);
 
+		Replicon replicon = _repliconLocalService.addRepliconProject(request);
+
 		if (_log.isDebugEnabled()) {
 			_log.debug("Receiving request: \n" + request.toString(2));
 		}
 
 		JSONObject response = _generateResponse(
-			"Updated, thank you for being so kind and responsible");
+			"Updated, thank you for being so kind and responsible. " +
+				replicon.getProjectName() + " has been added");
 
 		if (_log.isDebugEnabled()) {
 			_log.debug("Sending response: \n" + response.toString(2));
@@ -123,7 +127,7 @@ public class RepliconUpdateAction extends Application {
 		RepliconUpdateAction.class);
 
 	@Reference
-	private RepliconService _repliconService;
+	private RepliconLocalService _repliconLocalService;
 
 	@Reference
 	private UserLocalService _userLocalService;

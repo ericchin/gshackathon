@@ -47,8 +47,31 @@ public class RepliconLocalServiceWrapper implements RepliconLocalService,
 
 	@Override
 	public com.liferay.gs.hackathon.model.Replicon addRepliconProject(
+		com.liferay.portal.kernel.json.JSONObject json) {
+		return _repliconLocalService.addRepliconProject(json);
+	}
+
+	@Override
+	public com.liferay.gs.hackathon.model.Replicon addRepliconProject(
 		com.liferay.portal.kernel.service.ServiceContext serviceContext) {
 		return _repliconLocalService.addRepliconProject(serviceContext);
+	}
+
+	@Override
+	public com.liferay.gs.hackathon.model.Replicon addRepliconProject(
+		java.lang.String projectName, java.lang.String startTime,
+		java.lang.String endTime) {
+		return _repliconLocalService.addRepliconProject(projectName, startTime,
+			endTime);
+	}
+
+	@Override
+	public com.liferay.gs.hackathon.model.Replicon addRepliconProject(
+		java.lang.String startTime, java.lang.String endTime,
+		java.lang.String projectName,
+		com.liferay.portal.kernel.service.ServiceContext serviceContext) {
+		return _repliconLocalService.addRepliconProject(startTime, endTime,
+			projectName, serviceContext);
 	}
 
 	/**

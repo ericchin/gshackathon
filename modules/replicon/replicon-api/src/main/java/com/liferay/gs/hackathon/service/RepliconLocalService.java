@@ -27,6 +27,7 @@ import com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.Projection;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.model.PersistedModel;
 import com.liferay.portal.kernel.search.Indexable;
 import com.liferay.portal.kernel.search.IndexableType;
@@ -74,7 +75,16 @@ public interface RepliconLocalService extends BaseLocalService,
 	@Indexable(type = IndexableType.REINDEX)
 	public Replicon addReplicon(Replicon replicon);
 
+	public Replicon addRepliconProject(JSONObject json);
+
 	public Replicon addRepliconProject(ServiceContext serviceContext);
+
+	public Replicon addRepliconProject(java.lang.String projectName,
+		java.lang.String startTime, java.lang.String endTime);
+
+	public Replicon addRepliconProject(java.lang.String startTime,
+		java.lang.String endTime, java.lang.String projectName,
+		ServiceContext serviceContext);
 
 	/**
 	* Creates a new replicon with the primary key. Does not add the replicon to the database.
