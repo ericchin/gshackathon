@@ -258,6 +258,11 @@ public class RepliconLocalServiceWrapper implements RepliconLocalService,
 			orderByComparator);
 	}
 
+	@Override
+	public java.util.List<com.liferay.gs.hackathon.model.Replicon> getAllProjects() {
+		return _repliconLocalService.getAllProjects();
+	}
+
 	/**
 	* Returns a range of all the replicons.
 	*

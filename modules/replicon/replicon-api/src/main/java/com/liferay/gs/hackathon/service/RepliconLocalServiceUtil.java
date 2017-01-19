@@ -248,6 +248,10 @@ public class RepliconLocalServiceUtil {
 				   .dynamicQuery(dynamicQuery, start, end, orderByComparator);
 	}
 
+	public static java.util.List<com.liferay.gs.hackathon.model.Replicon> getAllProjects() {
+		return getService().getAllProjects();
+	}
+
 	/**
 	* Returns a range of all the replicons.
 	*

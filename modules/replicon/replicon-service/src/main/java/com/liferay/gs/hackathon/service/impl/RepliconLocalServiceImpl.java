@@ -24,6 +24,7 @@ import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.util.StringPool;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * The implementation of the replicon local service.
@@ -85,5 +86,9 @@ public class RepliconLocalServiceImpl extends RepliconLocalServiceBaseImpl {
 
 		return repliconPersistence.update(replicon);
 	}
+
+    public List<Replicon> getAllProjects() {
+        return repliconPersistence.findAll();
+    }
 
 }

@@ -226,6 +226,9 @@ public interface RepliconLocalService extends BaseLocalService,
 	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
 		int end, OrderByComparator<T> orderByComparator);
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<Replicon> getAllProjects();
+
 	/**
 	* Returns a range of all the replicons.
 	*
