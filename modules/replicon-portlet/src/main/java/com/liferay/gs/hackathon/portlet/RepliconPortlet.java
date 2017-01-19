@@ -43,20 +43,17 @@ public class RepliconPortlet extends MVCPortlet {
 	@Override
 	public void doView(RenderRequest renderRequest, RenderResponse renderResponse) throws IOException, PortletException {
 
-		try {
-			repliconLocalService.getReplicon(0);
-		} catch (PortalException e) {
-			e.printStackTrace();
-		}
-
-		List<Replicon> repliconEntries = new ArrayList<>();
+		List<Replicon> repliconEntries = repliconLocalService.getAllProjects();
+		repliconEntries = new ArrayList<>();
 		{ //TODO REMOVE
 			int myCount = 3;
 			while (myCount-- > 0) {
 				Replicon curReplicon = new MyRepliconImpl();
 				curReplicon.setProjectName("My Random Project " + myCount);
-				curReplicon.setStartTime("--Start Time--");
-				curReplicon.setEndTime("--Start Time--");
+				curReplicon.setStartTime(new Date());
+				Date tmp = new Date();
+				tmp.setTime(tmp.getTime() + 1000);
+				curReplicon.setEndTime(tmp);
 				repliconEntries.add(curReplicon);
 			}
 		}
@@ -96,7 +93,8 @@ public class RepliconPortlet extends MVCPortlet {
 	private static class MyRepliconImpl implements Replicon {
 		// TODO REMOVE
 
-		private String projectName, start, end;
+		private String projectName;
+		private Date start, end;
 
 		@Override
 		public long getPrimaryKey() {
@@ -205,31 +203,32 @@ public class RepliconPortlet extends MVCPortlet {
 
 		@Override
 		public String getProjectName() {
-			return null;
+			return projectName;
 		}
 
 		@Override
 		public void setProjectName(String projectName) {
-			projectName = projectName;
+			this.projectName = projectName;
 		}
 
 		@Override
-		public String getStartTime() {
-			return null;
+		public Date getStartTime() {
+			return start;
 		}
 
 		@Override
-		public void setStartTime(String startTime) {
+		public void setStartTime(Date startTime) {
 			start = startTime;
 		}
 
+
 		@Override
-		public String getEndTime() {
-			return null;
+		public Date getEndTime() {
+			return end;
 		}
 
 		@Override
-		public void setEndTime(String endTime) {
+		public void setEndTime(Date endTime) {
 			end = endTime;
 		}
 
