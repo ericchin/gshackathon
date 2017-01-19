@@ -1,8 +1,73 @@
 <%@ include file="/init.jsp" %>
 
+<%@ page import="com.liferay.portal.kernel.dao.search.SearchContainer" %>
+<%@ page import="com.liferay.gs.hackathon.model.Replicon" %>
+<%@ page import="java.util.List" %>
+
+
+<%
+	List<Replicon> repliconList = (List<Replicon>) renderRequest.getAttribute(RepliconConstants.REP_ENTRIES);
+%>
 
 <div class="replicon-portlet">
 
+	<div class="table-responsive">
+	    <table class="table table-striped">
+	        <thead>
+	        	<tr>
+	        		<th>Client | Project | Task</th>
+	        		<th>Billing</th>
+	        		<th>Activity</th>
+	        		<th></th>
+	        		<th></th>
+	        		<th></th>
+	        		<th></th>
+	        		<th></th>
+	        		<th></th>
+	        		<th></th>
+	        		<th>Total</th>
+	        	</tr>
+	        </thead>
+
+	        <tbody>
+
+	        <%
+	        	for(Replicon repliconObj : repliconList) {
+	        %>
+				<tr>
+					<td><%= repliconObj.getProjectName() %></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td>0.00</td>
+				</tr>
+			<%
+				}
+			%>
+	        </tbody>
+	    </table>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+<!-- REFERENCE -->
+
+
+
+<div class="replicon-portlet">
 	<div id="tsGrid" class="timesheetGrid">
 		<table class="timesheet" id="tsGridTable" eventtarget="grid">
 			<tbody>
