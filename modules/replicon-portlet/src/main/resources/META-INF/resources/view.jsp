@@ -4,28 +4,39 @@
 <%@ page import="com.liferay.gs.hackathon.model.Replicon" %>
 <%@ page import="java.util.List" %>
 
+<%@ page import="java.text.SimpleDateFormat" %>
+
+<%
+SimpleDateFormat dt = new SimpleDateFormat("h:mm a");
+SimpleDateFormat dtDay = new SimpleDateFormat("MMM d");
+%>
+
+
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+
+<style>
+	body {
+		font-family: 'Source Sans Pro', sans-serif;
+	}
+</style>
 
 <%
 	List<Replicon> repliconList = (List<Replicon>) renderRequest.getAttribute(RepliconConstants.REP_ENTRIES);
 %>
 
 <div class="replicon-portlet">
-
-	<div class="table-responsive">
+	<h1>Replicon (All Entries)</h1>
+	<div class="table-responsive table-day">
 	    <table class="table table-striped">
 	        <thead>
 	        	<tr>
-	        		<th>Client | Project | Task</th>
+	        		<th>Client Project</th>
 	        		<th>Billing</th>
 	        		<th>Activity</th>
-	        		<th></th>
-	        		<th></th>
-	        		<th></th>
-	        		<th></th>
-	        		<th></th>
-	        		<th></th>
-	        		<th></th>
-	        		<th>Total</th>
+	        		<th>Date</th>
+	        		<th>Start Time</th>
+	        		<th>End Time</th>
+	        		<th>Total Hours</th>
 	        	</tr>
 	        </thead>
 
@@ -33,23 +44,45 @@
 
 	        <%
 	        	for(Replicon repliconObj : repliconList) {
+					double divisionFactorToGetHours = 3600000.0;
+
+	        		double totalTime = (repliconObj.getEndTime().getTime() - repliconObj.getStartTime().getTime()) / divisionFactorToGetHours;
 	        %>
 				<tr>
 					<td><%= repliconObj.getProjectName() %></td>
 					<td></td>
 					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td>0.00</td>
+					<td><%= dtDay.format(repliconObj.getStartTime()) %></td>
+					<td><%= dt.format(repliconObj.getStartTime()) %></td>
+					<td><%= dt.format(repliconObj.getEndTime()) %></td>
+					<td><%= totalTime %></td>
 				</tr>
 			<%
 				}
 			%>
+	        </tbody>
+	    </table>
+	</div>
+
+	<br>
+
+	<h1>Replicon (Per Client)</h1>
+	<div class="table-responsive table-project">
+	    <table class="table table-striped">
+	        <thead>
+	        	<tr>
+	        		<th>Client</th>
+	        		<th>Total Hours</th>
+	        	</tr>
+	        </thead>
+
+	        <tbody>
+
+				<tr>
+					<td>First Test Client</td>
+					<td>12.0</td>
+				</tr>
+
 	        </tbody>
 	    </table>
 	</div>
