@@ -50,19 +50,27 @@ public class RepliconServiceImpl extends RepliconServiceBaseImpl {
 	}
 
 	public Replicon addRepliconProject(
-		long companyId, long userId, String startTime, String endTime,
-		String projectName) {
-
-		ServiceContext serviceContext = new ServiceContext();
-
-		serviceContext.setCompanyId(companyId);
-		serviceContext.setUserId(userId);
+		String startTime, String endTime, String projectName,
+		ServiceContext serviceContext) {
 
 		serviceContext.setAttribute(
 			RepliconConstants.PROJECT_NAME, projectName);
 
 		serviceContext.setAttribute(RepliconConstants.START_TIME, new Date());
 		serviceContext.setAttribute(RepliconConstants.END_TIME, new Date());
+
+		return repliconLocalService.addRepliconProject(serviceContext);
+	}
+
+	public Replicon addRepliconProject(
+		String projectName, String startTime, String endTime) {
+
+		ServiceContext serviceContext = new ServiceContext();
+
+		serviceContext.setAttribute(
+			RepliconConstants.PROJECT_NAME, projectName);
+		serviceContext.setAttribute(RepliconConstants.START_TIME, startTime);
+		serviceContext.setAttribute(RepliconConstants.END_TIME, endTime);
 
 		return repliconLocalService.addRepliconProject(serviceContext);
 	}
