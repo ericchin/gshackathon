@@ -169,19 +169,19 @@ public class RepliconSoap implements Serializable {
 		_projectName = projectName;
 	}
 
-	public String getStartTime() {
+	public Date getStartTime() {
 		return _startTime;
 	}
 
-	public void setStartTime(String startTime) {
+	public void setStartTime(Date startTime) {
 		_startTime = startTime;
 	}
 
-	public String getEndTime() {
+	public Date getEndTime() {
 		return _endTime;
 	}
 
-	public void setEndTime(String endTime) {
+	public void setEndTime(Date endTime) {
 		_endTime = endTime;
 	}
 
@@ -194,6 +194,6 @@ public class RepliconSoap implements Serializable {
 	private Date _createDate;
 	private Date _modifiedDate;
 	private String _projectName;
-	private String _startTime;
-	private String _endTime;
+	private Date _startTime;
+	private Date _endTime;
 }

@@ -82,8 +82,8 @@ public class RepliconModelImpl extends BaseModelImpl<Replicon>
 			{ "createDate", Types.TIMESTAMP },
 			{ "modifiedDate", Types.TIMESTAMP },
 			{ "projectName", Types.VARCHAR },
-			{ "startTime", Types.VARCHAR },
-			{ "endTime", Types.VARCHAR }
+			{ "startTime", Types.TIMESTAMP },
+			{ "endTime", Types.TIMESTAMP }
 		};
 	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
 
@@ -97,11 +97,11 @@ public class RepliconModelImpl extends BaseModelImpl<Replicon>
 		TABLE_COLUMNS_MAP.put("createDate", Types.TIMESTAMP);
 		TABLE_COLUMNS_MAP.put("modifiedDate", Types.TIMESTAMP);
 		TABLE_COLUMNS_MAP.put("projectName", Types.VARCHAR);
-		TABLE_COLUMNS_MAP.put("startTime", Types.VARCHAR);
-		TABLE_COLUMNS_MAP.put("endTime", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("startTime", Types.TIMESTAMP);
+		TABLE_COLUMNS_MAP.put("endTime", Types.TIMESTAMP);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table GS_Replicon (uuid_ VARCHAR(75) null,projectId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,projectName VARCHAR(75) null,startTime VARCHAR(75) null,endTime VARCHAR(75) null)";
+	public static final String TABLE_SQL_CREATE = "create table GS_Replicon (uuid_ VARCHAR(75) null,projectId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,projectName VARCHAR(75) null,startTime DATE null,endTime DATE null)";
 	public static final String TABLE_SQL_DROP = "drop table GS_Replicon";
 	public static final String ORDER_BY_JPQL = " ORDER BY replicon.projectId ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY GS_Replicon.projectId ASC";
@@ -284,13 +284,13 @@ public class RepliconModelImpl extends BaseModelImpl<Replicon>
 			setProjectName(projectName);
 		}
 
-		String startTime = (String)attributes.get("startTime");
+		Date startTime = (Date)attributes.get("startTime");
 
 		if (startTime != null) {
 			setStartTime(startTime);
 		}
 
-		String endTime = (String)attributes.get("endTime");
+		Date endTime = (Date)attributes.get("endTime");
 
 		if (endTime != null) {
 			setEndTime(endTime);
@@ -467,33 +467,23 @@ public class RepliconModelImpl extends BaseModelImpl<Replicon>
 
 	@JSON
 	@Override
-	public String getStartTime() {
-		if (_startTime == null) {
-			return StringPool.BLANK;
-		}
-		else {
-			return _startTime;
-		}
+	public Date getStartTime() {
+		return _startTime;
 	}
 
 	@Override
-	public void setStartTime(String startTime) {
+	public void setStartTime(Date startTime) {
 		_startTime = startTime;
 	}
 
 	@JSON
 	@Override
-	public String getEndTime() {
-		if (_endTime == null) {
-			return StringPool.BLANK;
-		}
-		else {
-			return _endTime;
-		}
+	public Date getEndTime() {
+		return _endTime;
 	}
 
 	@Override
-	public void setEndTime(String endTime) {
+	public void setEndTime(Date endTime) {
 		_endTime = endTime;
 	}
 
@@ -676,20 +666,22 @@ public class RepliconModelImpl extends BaseModelImpl<Replicon>
 			repliconCacheModel.projectName = null;
 		}
 
-		repliconCacheModel.startTime = getStartTime();
+		Date startTime = getStartTime();
 
-		String startTime = repliconCacheModel.startTime;
-
-		if ((startTime != null) && (startTime.length() == 0)) {
-			repliconCacheModel.startTime = null;
+		if (startTime != null) {
+			repliconCacheModel.startTime = startTime.getTime();
+		}
+		else {
+			repliconCacheModel.startTime = Long.MIN_VALUE;
 		}
 
-		repliconCacheModel.endTime = getEndTime();
+		Date endTime = getEndTime();
 
-		String endTime = repliconCacheModel.endTime;
-
-		if ((endTime != null) && (endTime.length() == 0)) {
-			repliconCacheModel.endTime = null;
+		if (endTime != null) {
+			repliconCacheModel.endTime = endTime.getTime();
+		}
+		else {
+			repliconCacheModel.endTime = Long.MIN_VALUE;
 		}
 
 		return repliconCacheModel;
@@ -803,8 +795,8 @@ public class RepliconModelImpl extends BaseModelImpl<Replicon>
 	private Date _modifiedDate;
 	private boolean _setModifiedDate;
 	private String _projectName;
-	private String _startTime;
-	private String _endTime;
+	private Date _startTime;
+	private Date _endTime;
 	private long _columnBitmask;
 	private Replicon _escapedModel;
 }

@@ -84,8 +84,8 @@ public class RepliconLocalServiceImpl extends RepliconLocalServiceBaseImpl {
 		replicon.setModifiedDate(new Date());
 
 		replicon.setProjectName(projectName);
-		replicon.setStartTime(startTime);
-		replicon.setEndTime(endTime);
+		replicon.setStartTime(new Date());
+		replicon.setEndTime(new Date());
 
 		return repliconPersistence.update(replicon);
 	}

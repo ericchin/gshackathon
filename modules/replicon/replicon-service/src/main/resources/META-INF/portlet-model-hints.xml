@@ -11,7 +11,7 @@
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
 		<field name="projectName" type="String" />
-		<field name="startTime" type="String" />
-		<field name="endTime" type="String" />
+		<field name="startTime" type="Date" />
+		<field name="endTime" type="Date" />
 	</model>
 </model-hints>
