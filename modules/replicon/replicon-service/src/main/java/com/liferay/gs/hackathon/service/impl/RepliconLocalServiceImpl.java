@@ -140,6 +140,26 @@ public class RepliconLocalServiceImpl extends RepliconLocalServiceBaseImpl {
 			Date start = dateFormat.parse(startTime);
 			Date end = dateFormat.parse(endTime);
 
+			Calendar startCal = CalendarFactoryUtil.getCalendar(
+				start.getTime());
+			Calendar endCal = CalendarFactoryUtil.getCalendar(end.getTime());
+
+			Calendar defaultCal = CalendarFactoryUtil.getCalendar();
+
+			defaultCal.set(
+				Calendar.HOUR_OF_DAY, startCal.get(Calendar.HOUR_OF_DAY));
+			defaultCal.set(Calendar.MINUTE, startCal.get(Calendar.MINUTE));
+			defaultCal.set(Calendar.SECOND, 0);
+
+			start = defaultCal.getTime();
+
+			defaultCal.set(
+				Calendar.HOUR_OF_DAY, endCal.get(Calendar.HOUR_OF_DAY));
+			defaultCal.set(Calendar.MINUTE, endCal.get(Calendar.MINUTE));
+			defaultCal.set(Calendar.SECOND, 0);
+
+			end = defaultCal.getTime();
+
 			if (_log.isDebugEnabled()) {
 				_log.debug("Start Date: " + start.getTime());
 				_log.debug("End Date:  " + end.getTime());
