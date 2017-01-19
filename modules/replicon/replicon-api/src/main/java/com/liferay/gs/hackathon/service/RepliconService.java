@@ -29,6 +29,8 @@ import com.liferay.portal.kernel.spring.osgi.OSGiBeanProperties;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Transactional;
 
+import java.util.Date;
+
 /**
  * Provides the remote service interface for Replicon. Methods of this
  * service are expected to have security checks based on the propagated JAAS
@@ -58,11 +60,7 @@ public interface RepliconService extends BaseService {
 	public Replicon addRepliconProject(ServiceContext serviceContext);
 
 	public Replicon addRepliconProject(java.lang.String projectName,
-		java.lang.String startTime, java.lang.String endTime);
-
-	public Replicon addRepliconProject(java.lang.String startTime,
-		java.lang.String endTime, java.lang.String projectName,
-		ServiceContext serviceContext);
+		Date startTime, Date endTime);
 
 	/**
 	* Returns the OSGi service identifier.

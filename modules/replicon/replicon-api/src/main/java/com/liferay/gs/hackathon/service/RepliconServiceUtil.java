@@ -52,18 +52,9 @@ public class RepliconServiceUtil {
 	}
 
 	public static com.liferay.gs.hackathon.model.Replicon addRepliconProject(
-		java.lang.String projectName, java.lang.String startTime,
-		java.lang.String endTime) {
+		java.lang.String projectName, java.util.Date startTime,
+		java.util.Date endTime) {
 		return getService().addRepliconProject(projectName, startTime, endTime);
-	}
-
-	public static com.liferay.gs.hackathon.model.Replicon addRepliconProject(
-		java.lang.String startTime, java.lang.String endTime,
-		java.lang.String projectName,
-		com.liferay.portal.kernel.service.ServiceContext serviceContext) {
-		return getService()
-				   .addRepliconProject(startTime, endTime, projectName,
-			serviceContext);
 	}
 
 	/**

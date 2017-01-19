@@ -81,26 +81,8 @@ public class RepliconServiceSoap {
 	}
 
 	public static com.liferay.gs.hackathon.model.RepliconSoap addRepliconProject(
-		java.lang.String startTime, java.lang.String endTime,
-		java.lang.String projectName,
-		com.liferay.portal.kernel.service.ServiceContext serviceContext)
-		throws RemoteException {
-		try {
-			com.liferay.gs.hackathon.model.Replicon returnValue = RepliconServiceUtil.addRepliconProject(startTime,
-					endTime, projectName, serviceContext);
-
-			return com.liferay.gs.hackathon.model.RepliconSoap.toSoapModel(returnValue);
-		}
-		catch (Exception e) {
-			_log.error(e, e);
-
-			throw new RemoteException(e.getMessage());
-		}
-	}
-
-	public static com.liferay.gs.hackathon.model.RepliconSoap addRepliconProject(
-		java.lang.String projectName, java.lang.String startTime,
-		java.lang.String endTime) throws RemoteException {
+		java.lang.String projectName, java.util.Date startTime,
+		java.util.Date endTime) throws RemoteException {
 		try {
 			com.liferay.gs.hackathon.model.Replicon returnValue = RepliconServiceUtil.addRepliconProject(projectName,
 					startTime, endTime);

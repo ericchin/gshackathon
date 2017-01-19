@@ -41,6 +41,7 @@ import com.liferay.portal.kernel.util.OrderByComparator;
 
 import java.io.Serializable;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -80,11 +81,7 @@ public interface RepliconLocalService extends BaseLocalService,
 	public Replicon addRepliconProject(ServiceContext serviceContext);
 
 	public Replicon addRepliconProject(java.lang.String projectName,
-		java.lang.String startTime, java.lang.String endTime);
-
-	public Replicon addRepliconProject(java.lang.String startTime,
-		java.lang.String endTime, java.lang.String projectName,
-		ServiceContext serviceContext);
+		Date startTime, Date endTime);
 
 	/**
 	* Creates a new replicon with the primary key. Does not add the replicon to the database.
