@@ -52,7 +52,7 @@ public class RepliconPortlet extends MVCPortlet {
 				curReplicon.setProjectName("My Random Project " + myCount);
 				curReplicon.setStartTime(new Date());
 				Date tmp = new Date();
-				tmp.setTime(tmp.getTime() + 1000);
+				tmp.setTime(tmp.getTime() + 3600000);
 				curReplicon.setEndTime(tmp);
 				repliconEntries.add(curReplicon);
 			}
