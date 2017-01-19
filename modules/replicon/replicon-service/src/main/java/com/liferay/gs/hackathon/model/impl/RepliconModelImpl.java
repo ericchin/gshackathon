@@ -83,7 +83,9 @@ public class RepliconModelImpl extends BaseModelImpl<Replicon>
 			{ "modifiedDate", Types.TIMESTAMP },
 			{ "projectName", Types.VARCHAR },
 			{ "startTime", Types.TIMESTAMP },
-			{ "endTime", Types.TIMESTAMP }
+			{ "endTime", Types.TIMESTAMP },
+			{ "billing", Types.VARCHAR },
+			{ "activity", Types.VARCHAR }
 		};
 	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
 
@@ -99,9 +101,11 @@ public class RepliconModelImpl extends BaseModelImpl<Replicon>
 		TABLE_COLUMNS_MAP.put("projectName", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("startTime", Types.TIMESTAMP);
 		TABLE_COLUMNS_MAP.put("endTime", Types.TIMESTAMP);
+		TABLE_COLUMNS_MAP.put("billing", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("activity", Types.VARCHAR);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table GS_Replicon (uuid_ VARCHAR(75) null,projectId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,projectName VARCHAR(75) null,startTime DATE null,endTime DATE null)";
+	public static final String TABLE_SQL_CREATE = "create table GS_Replicon (uuid_ VARCHAR(75) null,projectId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,projectName VARCHAR(75) null,startTime DATE null,endTime DATE null,billing VARCHAR(75) null,activity VARCHAR(75) null)";
 	public static final String TABLE_SQL_DROP = "drop table GS_Replicon";
 	public static final String ORDER_BY_JPQL = " ORDER BY replicon.projectId ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY GS_Replicon.projectId ASC";
@@ -147,6 +151,8 @@ public class RepliconModelImpl extends BaseModelImpl<Replicon>
 		model.setProjectName(soapModel.getProjectName());
 		model.setStartTime(soapModel.getStartTime());
 		model.setEndTime(soapModel.getEndTime());
+		model.setBilling(soapModel.getBilling());
+		model.setActivity(soapModel.getActivity());
 
 		return model;
 	}
@@ -222,6 +228,8 @@ public class RepliconModelImpl extends BaseModelImpl<Replicon>
 		attributes.put("projectName", getProjectName());
 		attributes.put("startTime", getStartTime());
 		attributes.put("endTime", getEndTime());
+		attributes.put("billing", getBilling());
+		attributes.put("activity", getActivity());
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
 		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
@@ -295,6 +303,18 @@ public class RepliconModelImpl extends BaseModelImpl<Replicon>
 
 		if (endTime != null) {
 			setEndTime(endTime);
+		}
+
+		String billing = (String)attributes.get("billing");
+
+		if (billing != null) {
+			setBilling(billing);
+		}
+
+		String activity = (String)attributes.get("activity");
+
+		if (activity != null) {
+			setActivity(activity);
 		}
 	}
 
@@ -498,6 +518,38 @@ public class RepliconModelImpl extends BaseModelImpl<Replicon>
 		_endTime = endTime;
 	}
 
+	@JSON
+	@Override
+	public String getBilling() {
+		if (_billing == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _billing;
+		}
+	}
+
+	@Override
+	public void setBilling(String billing) {
+		_billing = billing;
+	}
+
+	@JSON
+	@Override
+	public String getActivity() {
+		if (_activity == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _activity;
+		}
+	}
+
+	@Override
+	public void setActivity(String activity) {
+		_activity = activity;
+	}
+
 	@Override
 	public StagedModelType getStagedModelType() {
 		return new StagedModelType(PortalUtil.getClassNameId(
@@ -546,6 +598,8 @@ public class RepliconModelImpl extends BaseModelImpl<Replicon>
 		repliconImpl.setProjectName(getProjectName());
 		repliconImpl.setStartTime(getStartTime());
 		repliconImpl.setEndTime(getEndTime());
+		repliconImpl.setBilling(getBilling());
+		repliconImpl.setActivity(getActivity());
 
 		repliconImpl.resetOriginalValues();
 
@@ -697,12 +751,28 @@ public class RepliconModelImpl extends BaseModelImpl<Replicon>
 			repliconCacheModel.endTime = Long.MIN_VALUE;
 		}
 
+		repliconCacheModel.billing = getBilling();
+
+		String billing = repliconCacheModel.billing;
+
+		if ((billing != null) && (billing.length() == 0)) {
+			repliconCacheModel.billing = null;
+		}
+
+		repliconCacheModel.activity = getActivity();
+
+		String activity = repliconCacheModel.activity;
+
+		if ((activity != null) && (activity.length() == 0)) {
+			repliconCacheModel.activity = null;
+		}
+
 		return repliconCacheModel;
 	}
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(23);
+		StringBundler sb = new StringBundler(27);
 
 		sb.append("{uuid=");
 		sb.append(getUuid());
@@ -726,6 +796,10 @@ public class RepliconModelImpl extends BaseModelImpl<Replicon>
 		sb.append(getStartTime());
 		sb.append(", endTime=");
 		sb.append(getEndTime());
+		sb.append(", billing=");
+		sb.append(getBilling());
+		sb.append(", activity=");
+		sb.append(getActivity());
 		sb.append("}");
 
 		return sb.toString();
@@ -733,7 +807,7 @@ public class RepliconModelImpl extends BaseModelImpl<Replicon>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(37);
+		StringBundler sb = new StringBundler(43);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.gs.hackathon.model.Replicon");
@@ -783,6 +857,14 @@ public class RepliconModelImpl extends BaseModelImpl<Replicon>
 			"<column><column-name>endTime</column-name><column-value><![CDATA[");
 		sb.append(getEndTime());
 		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>billing</column-name><column-value><![CDATA[");
+		sb.append(getBilling());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>activity</column-name><column-value><![CDATA[");
+		sb.append(getActivity());
+		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -811,6 +893,8 @@ public class RepliconModelImpl extends BaseModelImpl<Replicon>
 	private String _originalProjectName;
 	private Date _startTime;
 	private Date _endTime;
+	private String _billing;
+	private String _activity;
 	private long _columnBitmask;
 	private Replicon _escapedModel;
 }

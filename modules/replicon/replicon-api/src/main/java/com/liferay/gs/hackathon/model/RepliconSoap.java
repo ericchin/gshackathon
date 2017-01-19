@@ -45,6 +45,8 @@ public class RepliconSoap implements Serializable {
 		soapModel.setProjectName(model.getProjectName());
 		soapModel.setStartTime(model.getStartTime());
 		soapModel.setEndTime(model.getEndTime());
+		soapModel.setBilling(model.getBilling());
+		soapModel.setActivity(model.getActivity());
 
 		return soapModel;
 	}
@@ -185,6 +187,22 @@ public class RepliconSoap implements Serializable {
 		_endTime = endTime;
 	}
 
+	public String getBilling() {
+		return _billing;
+	}
+
+	public void setBilling(String billing) {
+		_billing = billing;
+	}
+
+	public String getActivity() {
+		return _activity;
+	}
+
+	public void setActivity(String activity) {
+		_activity = activity;
+	}
+
 	private String _uuid;
 	private long _projectId;
 	private long _groupId;
@@ -196,4 +214,6 @@ public class RepliconSoap implements Serializable {
 	private String _projectName;
 	private Date _startTime;
 	private Date _endTime;
+	private String _billing;
+	private String _activity;
 }

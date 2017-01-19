@@ -2398,6 +2398,8 @@ public class RepliconPersistenceImpl extends BasePersistenceImpl<Replicon>
 		repliconImpl.setProjectName(replicon.getProjectName());
 		repliconImpl.setStartTime(replicon.getStartTime());
 		repliconImpl.setEndTime(replicon.getEndTime());
+		repliconImpl.setBilling(replicon.getBilling());
+		repliconImpl.setActivity(replicon.getActivity());
 
 		return repliconImpl;
 	}

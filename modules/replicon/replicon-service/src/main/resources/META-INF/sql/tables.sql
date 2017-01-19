@@ -9,5 +9,7 @@ create table GS_Replicon (
 	modifiedDate DATE null,
 	projectName VARCHAR(75) null,
 	startTime DATE null,
-	endTime DATE null
+	endTime DATE null,
+	billing VARCHAR(75) null,
+	activity VARCHAR(75) null
 );

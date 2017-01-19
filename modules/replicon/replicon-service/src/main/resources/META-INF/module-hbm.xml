@@ -17,5 +17,7 @@
 		<property name="projectName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="startTime" type="org.hibernate.type.TimestampType" />
 		<property name="endTime" type="org.hibernate.type.TimestampType" />
+		<property name="billing" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="activity" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>
 </hibernate-mapping>

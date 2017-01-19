@@ -253,6 +253,36 @@ public interface RepliconModel extends BaseModel<Replicon>, GroupedModel,
 	 */
 	public void setEndTime(Date endTime);
 
+	/**
+	 * Returns the billing of this replicon.
+	 *
+	 * @return the billing of this replicon
+	 */
+	@AutoEscape
+	public String getBilling();
+
+	/**
+	 * Sets the billing of this replicon.
+	 *
+	 * @param billing the billing of this replicon
+	 */
+	public void setBilling(String billing);
+
+	/**
+	 * Returns the activity of this replicon.
+	 *
+	 * @return the activity of this replicon
+	 */
+	@AutoEscape
+	public String getActivity();
+
+	/**
+	 * Sets the activity of this replicon.
+	 *
+	 * @param activity the activity of this replicon
+	 */
+	public void setActivity(String activity);
+
 	@Override
 	public boolean isNew();
 

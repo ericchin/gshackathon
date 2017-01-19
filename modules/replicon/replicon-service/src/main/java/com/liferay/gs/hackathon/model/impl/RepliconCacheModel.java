@@ -65,7 +65,7 @@ public class RepliconCacheModel implements CacheModel<Replicon>, Externalizable 
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(23);
+		StringBundler sb = new StringBundler(27);
 
 		sb.append("{uuid=");
 		sb.append(uuid);
@@ -89,6 +89,10 @@ public class RepliconCacheModel implements CacheModel<Replicon>, Externalizable 
 		sb.append(startTime);
 		sb.append(", endTime=");
 		sb.append(endTime);
+		sb.append(", billing=");
+		sb.append(billing);
+		sb.append(", activity=");
+		sb.append(activity);
 		sb.append("}");
 
 		return sb.toString();
@@ -152,6 +156,20 @@ public class RepliconCacheModel implements CacheModel<Replicon>, Externalizable 
 			repliconImpl.setEndTime(new Date(endTime));
 		}
 
+		if (billing == null) {
+			repliconImpl.setBilling(StringPool.BLANK);
+		}
+		else {
+			repliconImpl.setBilling(billing);
+		}
+
+		if (activity == null) {
+			repliconImpl.setActivity(StringPool.BLANK);
+		}
+		else {
+			repliconImpl.setActivity(activity);
+		}
+
 		repliconImpl.resetOriginalValues();
 
 		return repliconImpl;
@@ -174,6 +192,8 @@ public class RepliconCacheModel implements CacheModel<Replicon>, Externalizable 
 		projectName = objectInput.readUTF();
 		startTime = objectInput.readLong();
 		endTime = objectInput.readLong();
+		billing = objectInput.readUTF();
+		activity = objectInput.readUTF();
 	}
 
 	@Override
@@ -213,6 +233,20 @@ public class RepliconCacheModel implements CacheModel<Replicon>, Externalizable 
 
 		objectOutput.writeLong(startTime);
 		objectOutput.writeLong(endTime);
+
+		if (billing == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(billing);
+		}
+
+		if (activity == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(activity);
+		}
 	}
 
 	public String uuid;
@@ -226,4 +260,6 @@ public class RepliconCacheModel implements CacheModel<Replicon>, Externalizable 
 	public String projectName;
 	public long startTime;
 	public long endTime;
+	public String billing;
+	public String activity;
 }

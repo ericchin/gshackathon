@@ -70,6 +70,8 @@ public class RepliconWrapper implements Replicon, ModelWrapper<Replicon> {
 		attributes.put("projectName", getProjectName());
 		attributes.put("startTime", getStartTime());
 		attributes.put("endTime", getEndTime());
+		attributes.put("billing", getBilling());
+		attributes.put("activity", getActivity());
 
 		return attributes;
 	}
@@ -141,6 +143,18 @@ public class RepliconWrapper implements Replicon, ModelWrapper<Replicon> {
 		if (endTime != null) {
 			setEndTime(endTime);
 		}
+
+		String billing = (String)attributes.get("billing");
+
+		if (billing != null) {
+			setBilling(billing);
+		}
+
+		String activity = (String)attributes.get("activity");
+
+		if (activity != null) {
+			setActivity(activity);
+		}
 	}
 
 	@Override
@@ -196,6 +210,26 @@ public class RepliconWrapper implements Replicon, ModelWrapper<Replicon> {
 	@Override
 	public java.lang.Object clone() {
 		return new RepliconWrapper((Replicon)_replicon.clone());
+	}
+
+	/**
+	* Returns the activity of this replicon.
+	*
+	* @return the activity of this replicon
+	*/
+	@Override
+	public java.lang.String getActivity() {
+		return _replicon.getActivity();
+	}
+
+	/**
+	* Returns the billing of this replicon.
+	*
+	* @return the billing of this replicon
+	*/
+	@Override
+	public java.lang.String getBilling() {
+		return _replicon.getBilling();
 	}
 
 	/**
@@ -341,6 +375,26 @@ public class RepliconWrapper implements Replicon, ModelWrapper<Replicon> {
 	@Override
 	public void persist() {
 		_replicon.persist();
+	}
+
+	/**
+	* Sets the activity of this replicon.
+	*
+	* @param activity the activity of this replicon
+	*/
+	@Override
+	public void setActivity(java.lang.String activity) {
+		_replicon.setActivity(activity);
+	}
+
+	/**
+	* Sets the billing of this replicon.
+	*
+	* @param billing the billing of this replicon
+	*/
+	@Override
+	public void setBilling(java.lang.String billing) {
+		_replicon.setBilling(billing);
 	}
 
 	@Override

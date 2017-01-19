@@ -13,5 +13,7 @@
 		<field name="projectName" type="String" />
 		<field name="startTime" type="Date" />
 		<field name="endTime" type="Date" />
+		<field name="billing" type="String" />
+		<field name="activity" type="String" />
 	</model>
 </model-hints>
