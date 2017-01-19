@@ -14,7 +14,14 @@
 
 package com.liferay.gs.hackathon.service.impl;
 
-import aQute.bnd.annotation.ProviderType;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 import com.liferay.gs.hackathon.model.Replicon;
 import com.liferay.gs.hackathon.service.base.RepliconLocalServiceBaseImpl;
@@ -28,15 +35,7 @@ import com.liferay.portal.kernel.util.CalendarFactoryUtil;
 import com.liferay.portal.kernel.util.DateFormatFactoryUtil;
 import com.liferay.portal.kernel.util.StringPool;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-
-import java.util.Calendar;
-import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.*;
-import java.util.concurrent.TimeUnit;
+import aQute.bnd.annotation.ProviderType;
 
 /**
  * The implementation of the replicon local service.
@@ -115,6 +114,8 @@ public class RepliconLocalServiceImpl extends RepliconLocalServiceBaseImpl {
 				_log.debug("End Date:  " + end.getTime());
 			}
 
+			callRepliconWS(start, end);
+
 			return addRepliconProject(projectName, start, end);
 		}
 		catch (ParseException pe) {
@@ -124,7 +125,26 @@ public class RepliconLocalServiceImpl extends RepliconLocalServiceBaseImpl {
 		return null;
 	}
 
-    public int getTotalHoursByProjectName(String projectName){
+	protected void callRepliconWS(Date startDate, Date endDate) {
+		String company = "liferay";
+		String username = "thiago.moreira";
+		String password = "gshackathon";
+
+		try {
+			br.com.thiagomoreira.replicon.Replicon replicon = new br.com.thiagomoreira.replicon.Replicon(company, username, password);
+
+			String uri = replicon.punchIn("urn:replicon-tenant:liferay3:user:120",
+					startDate);
+			replicon.punchOut("urn:replicon-tenant:liferay3:user:120",
+					endDate, uri);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	public int getTotalHoursByProjectName(String projectName){
         List<Replicon> projects = repliconPersistence.findByProjectName(projectName);
         int totalHours = 0;
         for (Replicon r : projects) {

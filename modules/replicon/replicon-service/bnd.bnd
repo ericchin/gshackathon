@@ -2,3 +2,8 @@ Bundle-SymbolicName: replicon-service
 Bundle-Version: 1.0.0
 Liferay-Require-SchemaVersion: 1.0.0
 Liferay-Service: true
+Bundle-ClassPath:\
+  .,\
+  lib/replicon4j.jar
+-includeresource:\
+  lib/replicon4j.jar=replicon4j.jar
