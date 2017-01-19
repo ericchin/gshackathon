@@ -5,13 +5,103 @@
 
 	<div id="tsGrid" class="timesheetGrid">
 		<table class="timesheet" id="tsGridTable" eventtarget="grid">
-			<tbody><tr id="tsTimeGridSection" class="markerRowType enabled" style="display:;">
-				<th id="_84" class="columnHeader leftColumnHeader"><a class="" eventtarget="addRow_time" title="Add Time Row" href="javascript:;"><span title="Add Time Row" class="duplicateRowIcon"></span></a></th><th id="sc_task" class="columnHeader"><a class="dropDownAnchor enabled sortableDropDownAnchor" eventtarget="complicatedSortableColumn" id="" href="javascript:;">Client • Project • Task</a></th><th id="sc_billing" class="columnHeader sortableColumnHeader" eventtarget="sortableColumn">Billing<span class="icon-container"></span></th><th id="sc_activity" class="columnHeader sortableColumnHeader" eventtarget="sortableColumn">Activity<span class="icon-container"></span></th><th id="_86" class="columnHeader" style="display:none;"></th><th id="_77" class="columnHeader">Mon 23</th><th id="_78" class="columnHeader">Tue 24</th><th id="_79" class="columnHeader">Wed 25</th><th id="_80" class="columnHeader">Thu 26</th><th id="_81" class="columnHeader">Fri 27</th><th id="_82" class="columnHeader">Sat 28</th><th id="_83" class="columnHeader">Sun 29</th><th id="_88" class="columnHeader rightColumnHeader">Total</th><th id="_91" class="columnHeader" colspan="3" style="display:none;">Progress</th>
-			</tr><tr type="time" id="_152" rowid="1" eventtarget="selectableRow">
-				<td id="_153" class="rowField rowFunctions leftColumnItem"><a class="" eventtarget="duplicateRow" title="Duplicate Row" href="javascript:;"><span title="Duplicate Row" class="duplicateRowIcon"></span></a><a class="" eventtarget="deleteRow" title="Delete Row" href="javascript:;"><span title="Delete Row" class="deleteRowIcon"></span></a></td><td id="_156" class="rowField rowTask"><a class="dropDownAnchor enabled timesheetDropDown includesAdditional" eventtarget="selectTask" clientprogramvalue="459" projectvalue="1641" taskvalue="3381" id="_157" href="javascript:;"><span id="_157_clientProgramPartName" class="clientProgramPartName">Hewlett Packard Inc. • </span><span id="_157_projectPartName" class="projectPartName">HPI - DaaS Customer Portal (Phase 2)</span><span id="_157_taskPartName" class="taskPartName additional">  • <span class="selected">DaaS Customer User</span></span></a></td><td id="_158" class="rowField rowBilling"><a class="dropDownAnchor enabled timesheetDropDown includesAdditional" eventtarget="BillingDropDown" value="f23e54a19e015acdba8fca5891f6f14c" id="_159" href="javascript:;">Billable<span class="additional">UI Consultant</span></a></td><td id="_163" class="rowField rowActivity"><a class="dropDownAnchor enabled" eventtarget="ActivityDropDown" id="_164" href="javascript:;">&lt; None &gt;</a></td><td id="_162" class="rowField rowFiller" style="display:none;"></td><td id="_165" eventtarget="cell" class="cell"><input class="" maxlength="6"></td><td id="_166" eventtarget="cell" class="cell"><input class="" maxlength="6"></td><td id="_167" eventtarget="cell" class="cell"><input class="" maxlength="6"></td><td id="_168" eventtarget="cell" class="cell"><input class="" maxlength="6"></td><td id="_169" eventtarget="cell" class="cell"><input class="" maxlength="6"></td><td id="_170" eventtarget="cell" class="cell dayOffCell"><input class="" maxlength="6"></td><td id="_171" eventtarget="cell" class="cell dayOffCell"><input class="" maxlength="6"></td><td id="_154" class="rowTotal rightColumn"><div titlehtml="0.00" style="white-space:nowrap;">
-					0.00
-				</div></td><td id="_161-percentage" class="rowField progress percentage" style="display:none;">&nbsp;</td><td id="_161-bar" class="rowField progress bar" style="display:none;">&nbsp;</td><td id="_161-hours" class="rowField progress hours rightColumn" style="display:none;">&nbsp;</td>
-			</tr><tr type="time" id="_172" rowid="2" eventtarget="selectableRow">
+			<tbody>
+			<tr id="tsTimeGridSection" class="markerRowType enabled" style="display:;">
+				<th id="_84" class="columnHeader leftColumnHeader">
+					<a class="" eventtarget="addRow_time" title="Add Time Row" href="javascript:;">
+						<span title="Add Time Row" class="duplicateRowIcon"></span>
+					</a>
+				</th>
+
+				<th id="sc_task" class="columnHeader">
+					<a class="dropDownAnchor enabled sortableDropDownAnchor" eventtarget="complicatedSortableColumn" id="" href="javascript:;">Client • Project • Task</a>
+				</th>
+
+				<th id="sc_billing" class="columnHeader sortableColumnHeader" eventtarget="sortableColumn">Billing
+					<span class="icon-container"></span>
+				</th>
+
+				<th id="sc_activity" class="columnHeader sortableColumnHeader" eventtarget="sortableColumn">Activity
+					<span class="icon-container"></span>
+				</th>
+
+				<th id="_86" class="columnHeader" style="display:none;">
+
+				</th>
+
+				<th id="_77" class="columnHeader">Mon 23</th>
+
+				<th id="_78" class="columnHeader">Tue 24</th>
+
+				<th id="_79" class="columnHeader">Wed 25</th>
+
+				<th id="_80" class="columnHeader">Thu 26</th>
+
+				<th id="_81" class="columnHeader">Fri 27</th>
+
+				<th id="_82" class="columnHeader">Sat 28</th>
+
+				<th id="_83" class="columnHeader">Sun 29</th>
+
+				<th id="_88" class="columnHeader rightColumnHeader">Total</th>
+
+				<th id="_91" class="columnHeader" colspan="3" style="display:none;">Progress</th>
+			</tr>
+
+			<tr type="time" id="_152" rowid="1" eventtarget="selectableRow">
+				<td id="_153" class="rowField rowFunctions leftColumnItem">
+					<a class="" eventtarget="duplicateRow" title="Duplicate Row" href="javascript:;">
+						<span title="Duplicate Row" class="duplicateRowIcon"></span>
+					</a>
+
+					<a class="" eventtarget="deleteRow" title="Delete Row" href="javascript:;">
+						<span title="Delete Row" class="deleteRowIcon"></span>
+					</a>
+				</td>
+
+				<td id="_156" class="rowField rowTask">
+					<a class="dropDownAnchor enabled timesheetDropDown includesAdditional" eventtarget="selectTask" clientprogramvalue="459" projectvalue="1641" taskvalue="3381" id="_157" href="javascript:;"><span id="_157_clientProgramPartName" class="clientProgramPartName">Hewlett Packard Inc. • </span><span id="_157_projectPartName" class="projectPartName">HPI - DaaS Customer Portal (Phase 2)</span><span id="_157_taskPartName" class="taskPartName additional">  • <span class="selected">DaaS Customer User</span></span></a>
+				</td>
+
+				<td id="_158" class="rowField rowBilling">
+					<a class="dropDownAnchor enabled timesheetDropDown includesAdditional" eventtarget="BillingDropDown" value="f23e54a19e015acdba8fca5891f6f14c" id="_159" href="javascript:;">Billable<span class="additional">UI Consultant</span></a>
+				</td>
+
+				<td id="_163" class="rowField rowActivity">
+					<a class="dropDownAnchor enabled" eventtarget="ActivityDropDown" id="_164" href="javascript:;">&lt; None &gt;</a>
+				</td>
+
+				<td id="_162" class="rowField rowFiller" style="display:none;"></td>
+
+				<td id="_165" eventtarget="cell" class="cell"><input class="" maxlength="6"></td>
+
+				<td id="_166" eventtarget="cell" class="cell"><input class="" maxlength="6"></td>
+
+				<td id="_167" eventtarget="cell" class="cell"><input class="" maxlength="6"></td>
+
+				<td id="_168" eventtarget="cell" class="cell"><input class="" maxlength="6"></td>
+
+				<td id="_169" eventtarget="cell" class="cell"><input class="" maxlength="6"></td>
+
+				<td id="_170" eventtarget="cell" class="cell dayOffCell"><input class="" maxlength="6"></td>
+
+				<td id="_171" eventtarget="cell" class="cell dayOffCell"><input class="" maxlength="6"></td>
+
+				<td id="_154" class="rowTotal rightColumn">
+					<div titlehtml="0.00" style="white-space:nowrap;">
+						0.00
+					</div>
+				</td>
+
+				<td id="_161-percentage" class="rowField progress percentage" style="display:none;">&nbsp;</td>
+
+				<td id="_161-bar" class="rowField progress bar" style="display:none;">&nbsp;</td>
+
+				<td id="_161-hours" class="rowField progress hours rightColumn" style="display:none;">&nbsp;</td>
+			</tr>
+
+
+			<tr type="time" id="_172" rowid="2" eventtarget="selectableRow">
 				<td id="_173" class="rowField rowFunctions leftColumnItem"><a class="" eventtarget="duplicateRow" title="Duplicate Row" href="javascript:;"><span title="Duplicate Row" class="duplicateRowIcon"></span></a><a class="" eventtarget="deleteRow" title="Delete Row" href="javascript:;"><span title="Delete Row" class="deleteRowIcon"></span></a></td><td id="_176" class="rowField rowTask"><a class="dropDownAnchor enabled timesheetDropDown includesAdditional" eventtarget="selectTask" clientprogramvalue="10" projectvalue="741" taskvalue="2690" id="_177" href="javascript:;"><span id="_177_clientProgramPartName" class="clientProgramPartName">Liferay INC • </span><span id="_177_projectPartName" class="projectPartName">GS Internal Project</span><span id="_177_taskPartName" class="taskPartName additional">  • <span class="selected">Holiday</span></span></a></td><td id="_178" class="rowField rowBilling"><a class="dropDownAnchor enabled timesheetDropDown" eventtarget="BillingDropDown" value="none" id="_179" href="javascript:;">Non-billable</a></td><td id="_183" class="rowField rowActivity"><a class="dropDownAnchor enabled" eventtarget="ActivityDropDown" id="_184" href="javascript:;">&lt; None &gt;</a></td><td id="_182" class="rowField rowFiller" style="display:none;"></td><td id="_185" eventtarget="cell" class="cell"><input class="" maxlength="6"></td><td id="_186" eventtarget="cell" class="cell"><input class="" maxlength="6"></td><td id="_187" eventtarget="cell" class="cell"><input class="" maxlength="6"></td><td id="_188" eventtarget="cell" class="cell"><input class="" maxlength="6"></td><td id="_189" eventtarget="cell" class="cell"><input class="" maxlength="6"></td><td id="_190" eventtarget="cell" class="cell dayOffCell"><input class="" maxlength="6"></td><td id="_191" eventtarget="cell" class="cell dayOffCell"><input class="" maxlength="6"></td><td id="_174" class="rowTotal rightColumn"><div titlehtml="0.00" style="white-space:nowrap;">
 					0.00
 				</div></td><td id="_181-percentage" class="rowField progress percentage" style="display:none;">&nbsp;</td><td id="_181-bar" class="rowField progress bar" style="display:none;">&nbsp;</td><td id="_181-hours" class="rowField progress hours rightColumn" style="display:none;">&nbsp;</td>
