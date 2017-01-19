@@ -3,8 +3,16 @@ package com.liferay.gs.hackathon.portlet;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
 
 import javax.portlet.Portlet;
+import javax.portlet.PortletException;
+import javax.portlet.RenderRequest;
+import javax.portlet.RenderResponse;
 
 import org.osgi.service.component.annotations.Component;
+
+import java.io.IOException;
+import java.util.*;
+
+import static com.liferay.gs.hackathon.portlet.constants.RepliconConstants.*;
 
 @Component(
 	immediate = true,
@@ -21,4 +29,35 @@ import org.osgi.service.component.annotations.Component;
 	service = Portlet.class
 )
 public class RepliconPortlet extends MVCPortlet {
+
+
+	@Override
+	public void doView(RenderRequest renderRequest, RenderResponse renderResponse) throws IOException, PortletException {
+		super.doView(renderRequest, renderResponse);
+
+		List<String> projects = new ArrayList<>();
+		// TODO Replace Sample Data
+		projects.add("Some Project 1");
+		projects.add("Some Project 2");
+
+		Map<String, Map<String, List<String>>> availableBillingAndActivity = new HashMap<>();
+
+		// TODO Replace Sample data
+		for (String proj: projects){
+			Map<String, List<String>> newBillActMap = new HashMap<>();
+			List<String> sampleBillOptions = new ArrayList<>();
+			sampleBillOptions.add("SampleBillOption 1");
+			sampleBillOptions.add("SampleBillOption 2");
+			List<String> sampleActivityOptions = new ArrayList<>();
+			sampleActivityOptions .add("SampleActOption 1");
+			sampleActivityOptions .add("SampleActOption 2");
+			newBillActMap.put("billings", sampleBillOptions);
+			newBillActMap.put("activities", sampleActivityOptions);
+			availableBillingAndActivity.put(proj, newBillActMap);
+		}
+
+		renderRequest.setAttribute(AVAIL_PROJS_ATTR, projects);
+		renderRequest.setAttribute(TODAY_ATTR, new Date());
+
+	}
 }
