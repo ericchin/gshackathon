@@ -30,11 +30,15 @@ import com.liferay.portal.kernel.util.StringPool;
 
 import java.text.DateFormat;
 import java.text.ParseException;
+<<<<<<< HEAD
 
 import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+=======
+import java.util.*;
+>>>>>>> Implement get unique projectNames
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -195,6 +199,15 @@ public class RepliconLocalServiceImpl extends RepliconLocalServiceBaseImpl {
 	public List<Replicon> getAllProjects() {
 		return repliconPersistence.findAll();
 	}
+	
+    public Set<String> getProjectNames() {
+        List<Replicon> projects = repliconPersistence.findAll();
+        Set<String> projectNames = new HashSet<String>();
+        for (Replicon r : projects) {
+            projectNames.add(r.getProjectName());
+        }
+        return projectNames;
+    }
 
 	private static final String DATE_FORMAT_PATTERN = "HH:mm";
 
