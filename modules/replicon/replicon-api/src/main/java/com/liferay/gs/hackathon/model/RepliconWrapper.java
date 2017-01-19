@@ -193,6 +193,11 @@ public class RepliconWrapper implements Replicon, ModelWrapper<Replicon> {
 	}
 
 	@Override
+	public double getTotalTimeInHours() {
+		return _replicon.getTotalTimeInHours();
+	}
+
+	@Override
 	public int compareTo(Replicon replicon) {
 		return _replicon.compareTo(replicon);
 	}

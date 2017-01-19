@@ -200,6 +200,10 @@ public class RepliconLocalServiceUtil {
 		return getService().getRepliconsCount();
 	}
 
+	public static int getTotalHoursByProjectName(java.lang.String projectName) {
+		return getService().getTotalHoursByProjectName(projectName);
+	}
+
 	/**
 	* Returns the OSGi service identifier.
 	*

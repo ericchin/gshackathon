@@ -187,6 +187,9 @@ public interface RepliconLocalService extends BaseLocalService,
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getRepliconsCount();
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getTotalHoursByProjectName(java.lang.String projectName);
+
 	/**
 	* Returns the OSGi service identifier.
 	*

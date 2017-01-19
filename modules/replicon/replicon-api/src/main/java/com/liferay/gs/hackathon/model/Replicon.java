@@ -53,4 +53,6 @@ public interface Replicon extends RepliconModel, PersistedModel {
 				return Replicon.class;
 			}
 		};
+
+	public double getTotalTimeInHours();
 }

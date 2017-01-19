@@ -209,6 +209,11 @@ public class RepliconLocalServiceWrapper implements RepliconLocalService,
 		return _repliconLocalService.getRepliconsCount();
 	}
 
+	@Override
+	public int getTotalHoursByProjectName(java.lang.String projectName) {
+		return _repliconLocalService.getTotalHoursByProjectName(projectName);
+	}
+
 	/**
 	* Returns the OSGi service identifier.
 	*
