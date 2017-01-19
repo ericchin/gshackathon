@@ -45,6 +45,8 @@ SimpleDateFormat dtDay = new SimpleDateFormat("MMM d");
 </style>
 
 <%
+    Map pTotals = (Map) renderRequest.getAttribute(RepliconConstants.AVAIL_PROJS_ATTR);
+    List names = (List)pTotals.getKeys();
 	List<Replicon> repliconList = (List<Replicon>) renderRequest.getAttribute(RepliconConstants.REP_ENTRIES);
 %>
 
@@ -73,8 +75,7 @@ SimpleDateFormat dtDay = new SimpleDateFormat("MMM d");
 
 	        		/* double totalTime = (repliconObj.getEndTime().getTime() - repliconObj.getStartTime().getTime()) / divisionFactorToGetHours; */
 					String pName = repliconObj.getProjectName();
-					Map pTotals = (Map) renderRequest.getAttribute(RepliconConstants.AVAIL_PROJS_ATTR);
-					double totalTime = (Double) pTotals.get(pName);
+					Double totalTime = (Double) pTotals.get(pName);
 	        %>
 				<tr>
 					<td><%= repliconObj.getProjectName() %></td>
@@ -93,31 +94,7 @@ SimpleDateFormat dtDay = new SimpleDateFormat("MMM d");
 
 	<br>
 
-	<div class="table-responsive table-project">
-		<h1>Replicon (Per Client)</h1>
-	    <table class="table table-striped">
-	        <thead>
-	        	<tr>
-	        		<th>Client</th>
-	        		<th>Total Hours</th>
-	        	</tr>
-	        </thead>
 
-	        <tbody>
-			<%
-				for (Replicon repliconObj : repliconList) {
-
-			%>
-				<tr>
-					<td><%= repliconObj.getProjectName() %></td>
-					<td>12.0</td>
-				</tr>
-			<%
-				}
-			%>
-	        </tbody>
-	    </table>
-	</div>
 </div>
 
 

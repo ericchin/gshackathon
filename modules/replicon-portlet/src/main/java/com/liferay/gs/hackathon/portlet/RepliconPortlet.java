@@ -41,18 +41,9 @@ public class RepliconPortlet extends MVCPortlet {
 	public void doView(RenderRequest renderRequest, RenderResponse renderResponse) throws IOException, PortletException {
 
 		List<Replicon> repliconEntries = repliconLocalService.getAllProjects();
-		{ //TODO REMOVE
-			repliconEntries = new ArrayList<>();
-		}
 
 		// get project names
 		Set<String> projNames = repliconLocalService.getProjectNames();
-		{ // TODO REMOVE
-			projNames = new HashSet<>();
-			projNames.add("Random Project Name 1");
-			projNames.add("Random Project Name 2");
-			projNames.add("Random Project Name 3");
-		}
 
 		//repliconLocalService.getTotalHoursByProjectName();
 		Map<String, Double>  projectsTotals = new HashMap<>();
@@ -62,35 +53,9 @@ public class RepliconPortlet extends MVCPortlet {
 		double absoluteTotal = 0.0;
 		for (String pName : projNames) {
 			double projTotal = repliconLocalService.getTotalHoursByProjectName(pName);
-			{// TODO REMOVE
-				projTotal = 0.0;
-			}
 			projectsTotals.put(pName, projTotal);
 			absoluteTotal += projTotal;
 		}
-
-		// TODO Replace Sample data repliconEntries
-		{ //TODO REMOVE
-			 int myCount = 5;
-			 while (myCount-- > 0) {
-			 	Replicon curReplicon = new MyRepliconImpl();
-			 	String pName = (String)(projNames.toArray()[myCount % projNames.size()]);
-			 	curReplicon.setProjectName(pName);
-			 	curReplicon.setStartTime(new Date());
-			 	Date tmp = new Date();
-			 	tmp.setTime(tmp.getTime() + 3600000);
-			 	curReplicon.setEndTime(tmp);
-			 	repliconEntries.add(curReplicon);
-			 }
-			Replicon curReplicon = new MyRepliconImpl();
-			curReplicon.setProjectName((String)(projNames.toArray()[0]));
-			curReplicon.setStartTime(new Date());
-			Date tmp = new Date();
-			tmp.setTime(tmp.getTime() + 3600000);
-			curReplicon.setEndTime(tmp);
-			repliconEntries.add(curReplicon);
-		}
-
 
 		renderRequest.setAttribute(AVAIL_PROJS_ATTR, projectsTotals);
 		renderRequest.setAttribute(TODAY_ATTR, new Date());
