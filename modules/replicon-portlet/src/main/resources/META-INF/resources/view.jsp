@@ -57,12 +57,11 @@ SimpleDateFormat dtDay = new SimpleDateFormat("MMM d");
 	        <thead>
 	        	<tr>
 	        		<th>Client Project</th>
-	        		<th>Billing</th>
-	        		<th>Activity</th>
+
 	        		<th>Date</th>
 	        		<th>Start Time</th>
 	        		<th>End Time</th>
-	        		<th>Total Hours</th>
+
 	        	</tr>
 	        </thead>
 
@@ -79,12 +78,11 @@ SimpleDateFormat dtDay = new SimpleDateFormat("MMM d");
 	        %>
 				<tr>
 					<td><%= repliconObj.getProjectName() %></td>
-					<td><%= repliconObj.getBilling() %></td>
-					<td><%= repliconObj.getActivity() %></td>
+
 					<td><%= dtDay.format(repliconObj.getStartTime()) %></td>
 					<td><%= dt.format(repliconObj.getStartTime()) %></td>
 					<td><%= dt.format(repliconObj.getEndTime()) %></td>
-					<td><%= totalTime %></td>
+
 				</tr>
 			<%
 				}
