@@ -24,7 +24,7 @@
 		<!-- Other fields -->
 
 		<column name="projectName" type="String" />
-		<column name="startTime" type="String" />
-		<column name="endTime" type="String" />
+		<column name="startTime" type="Date" />
+		<column name="endTime" type="Date" />
 	</entity>
 </service-builder>
