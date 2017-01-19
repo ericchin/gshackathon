@@ -12,3 +12,5 @@ buildService {
 	osgiModule = true
 	propsUtil = "com.liferay.gs.hackathon.service.util.PropsUtil"
 }
+
+apply plugin: 'eclipse'
